@@ -1,0 +1,47 @@
+</main>
+<!--   body/main : END    -->
+
+
+
+<script type="text/javascript">
+    const currentPage = "<%= page.pageName %>";
+
+
+
+    // define background color
+    document.querySelector("body").style.backgroundColor = 'var(--' + currentPage + '-bg-color)';
+
+    // define text color
+    document.querySelector("body").style.color = 'var(--' + currentPage + '-text-color)';
+
+    // define '.logo' color
+    document.querySelector(".logo").style.color = 'var(--' + currentPage + '-logo-color)';
+
+    if (currentPage != "project") {
+        // add active class to relevant 'navbar a' item
+        document.querySelector("#" + currentPage).classList.add("active");
+        // define '.navbar a:active' color
+        document.querySelector("#" + currentPage).style.color = 'var(--' + currentPage + '-hover-color)';
+    }
+
+
+    // define '.navbar a, .navbar a:hover' color
+    document.querySelectorAll(".navbar a").forEach((a) => {
+
+        if (a.className != 'active') {
+            a.style.color = 'var(--' + currentPage + '-nav-color)';
+            a.addEventListener('mouseover', function (event) {
+                event.target.style.color = 'var(--' + currentPage + '-hover-color)';
+            });
+
+            a.addEventListener('mouseout', function (event) {
+                event.target.style.color = 'var(--' + currentPage + '-nav-color)';
+            });
+        }
+    });
+
+</script>
+
+</body>
+
+</html>

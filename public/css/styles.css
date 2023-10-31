@@ -1,0 +1,436 @@
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    font-family: 'LEMON MILK Pro FTR', sans-serif;
+    font-weight: normal;
+}
+
+html {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+:root {
+    --home-bg-color: white;
+    --home-nav-color: black;
+    --home-logo-color: black;
+    --home-text-color: black;
+    --home-hover-color: #21d881;
+
+    --about-bg-color: #21d881;
+    --about-nav-color: white;
+    --about-logo-color: #8121d8;
+    --about-text-color: black;
+    --about-hover-color: #8121d8;
+
+    --contact-bg-color: #8121d8;
+    --contact-nav-color: white;
+    --contact-logo-color: #21d881;
+    --contact-text-color: white;
+    --contact-hover-color: #21d881;
+
+    --project-bg-color: white;
+    --project-text-color: black;
+    --project-hover-color: #8121d8;
+}
+
+body {
+    background-color: var(--home-bg-color);
+    color: var(--home-text-color);
+}
+
+
+/******************** Navbar : START ********************/
+
+.header {
+    padding: 2rem 4%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2.2rem;
+    z-index: 100;
+}
+
+.logo {
+    color: var(--home-text-color);
+    cursor: default;
+    letter-spacing: -2px;
+    font-family: 'LEMON MILK', sans-serif;
+    font-weight: 200;
+}
+
+
+.navbar a {
+    letter-spacing: -1px;
+    color: var(--home-text-color);
+    margin-left: .4rem;
+    font-family: 'LEMON MILK Pro FTR', sans-serif;
+    font-weight: 500;
+}
+
+.navbar a.active {
+    color: var(--home-hover-color);
+}
+
+/******************** Navbar : END ********************/
+
+/*-----------------------------------------------------------------------------------*/
+
+
+/******************** Section : START ********************/
+
+section {
+    min-height: 10vm;
+    padding: 2rem 4%;
+    /* top=10rem, right&left=9%, bottom=2rem*/
+}
+
+/******************** Section : END ********************/
+
+/*-----------------------------------------------------------------------------------*/
+
+/******************** Main : START ********************/
+
+/******************** Main : END ********************/
+
+/*-----------------------------------------------------------------------------------*/
+
+/******************** Home content : START ********************/
+
+
+.home-content h1,
+.home-content h3 {
+    /* שהם הבנים של הום-קונטנט h3 כל האובייקטים */
+    font-weight: 200;
+    font-size: 2.5rem;
+    letter-spacing: -1px;
+    line-height: 3rem;
+    margin-top: -.7rem;
+    text-align: center;
+}
+
+.home-content h1 {
+    margin-bottom: .7rem;
+}
+
+.project-content {
+    text-align: center;
+}
+
+/******************** Home content : END ********************/
+
+/*-----------------------------------------------------------------------------------*/
+
+/******************** Home gallery : START ********************/
+
+/* home-gallery */
+.home-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+
+}
+
+.gallery-item {
+    flex-basis: 49%;
+    /* Adjust the value as needed */
+    text-align: center;
+    margin-bottom: 8rem;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s;
+    background-color: #21d881;
+}
+
+
+.gallery-img {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.gallery-img>img {
+    height: 100%;
+    width: 100%;
+}
+
+
+.gallery-img:hover .overlay {
+    /* שהם הבנים של גלרי-אייטם:הובר .overlay כל האובייקטים מקלאס */
+    opacity: 1;
+}
+
+.gallery-img-text {
+    text-align: left;
+    padding-top: 1rem;
+    font-size: 1.8rem;
+}
+
+/******************** Home gallery : END ********************/
+
+
+/*-----------------------------------------------------------------------------------*/
+
+
+/******************** about content : START ********************/
+
+.about-content * {
+    font-weight: 200;
+    font-size: 1.9rem;
+}
+
+.about-me {
+    color: white;
+    font-size: 3rem;
+    text-align: center;
+    
+}
+
+
+
+
+.intro {
+    /* display: inline-flex;
+    justify-content: space-around; */
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
+.about_img {
+    border-radius: 50%;
+    /* position: relative;
+    right: 4rem;
+    bottom: 5rem;
+    z-index: 100; */
+    display: block;
+    margin: auto;
+    text-align: center;
+    width: 20%;
+    margin-bottom: 2.5rem;
+}
+
+.intro>h3 {
+    font-size: 1.9rem;
+    width: 68%;
+    align-self: flex-end;
+}
+
+
+
+.intro>span {
+    background-color: var(--about-logo-color);
+    width: 19rem;
+    height: 19rem;
+}
+
+
+/******************** about content : END ********************/
+
+/*-----------------------------------------------------------------------------------*/
+
+/******************** contact content : START ********************/
+
+
+.contact-content {
+    line-height: 4.2rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.platforms {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    margin-top: 9rem;
+}
+
+
+.contact-content * {
+    font-weight: 300;
+    font-size: 3.5rem;
+    color: #fff;
+}
+
+
+.circle-contact {
+    position: fixed;
+    z-index: -1;
+    border: 15px solid #21d881;
+    border-radius: 50%;
+    height: 45rem;
+    width: 45rem;
+    border-top-color: transparent;
+    transform: rotate(85deg);
+    overflow: hidden;
+    margin-right: 55rem;
+    margin-top: -2rem;
+}
+
+/******************** contact content : END ********************/
+
+/*-----------------------------------------------------------------------------------*/
+
+/******************** project content : START ********************/
+
+.projectName {
+    color: var(--project-hover-color);
+    letter-spacing: -2px;
+    font-family: 'LEMON MILK Pro FTR', sans-serif;
+    font-weight: bold;
+    font-size: 2.5rem;
+}
+
+.projectDesc {
+    font-weight: 200;
+    font-size: 2.5rem;
+    letter-spacing: -1px;
+    line-height: 2.7rem;
+    margin-top: -.2rem;
+}
+
+.project-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.project-gallery div {
+    height: 80vh;
+    position: relative;
+}
+
+.image-project img {
+    object-fit: cover;
+    vertical-align: middle;
+
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 900px) {
+
+    * {
+        text-align: center;
+    }
+
+    section {
+        min-height: auto;
+        padding: 0 4vw 0 4vw;
+        padding-top: 1vh;
+    }
+
+    .home-content h3,
+    .home-content h1 {
+        font-weight: 200;
+        font-size: 1.5rem;
+        letter-spacing: -.3px;
+        line-height: 2.1rem;
+        margin-top: 0;
+    }
+    .home-content h1 {
+        margin-bottom: 0;
+    }
+
+    .projectDesc {
+        font-weight: 200;
+        font-size: 1.5rem;
+        letter-spacing: -.3px;
+        margin-top: 0;
+        line-height: 2.1rem;
+        margin-bottom: 2.5rem;
+    }
+
+
+    .home-gallery,
+    .header,
+    .navbar {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 3vh;
+    }
+
+    .navbar {
+        text-align: center;
+    }
+
+    .image-project img {
+        object-fit: contain;
+    }
+
+
+
+    .project-gallery div {
+        height: auto;
+        position: relative;
+    }
+
+    .about-me,
+    .square {
+        display: none;
+    }
+
+    .intro {
+        display: block;
+        margin: auto;
+        text-align: center;
+    }
+
+    .intro>h3,
+    .about-content>h3 {
+        font-size: 1.2rem;
+        font-weight: bold;
+        width: auto;
+        align-self: flex-end;
+        margin-bottom: 3vh;
+        text-align: center;
+    }
+
+    .contact-content {
+        line-height: 3.2rem;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .about_img {
+        width: 40%;
+    }
+
+    .platforms h3 {
+        font-size: 4vh;
+    }
+
+    .circle-contact {
+        position: absolute;
+        z-index: -1;
+        border: 16px solid #21d881;
+        border-radius: 50%;
+        height: 37rem;
+        width: 38rem;
+        border-top-color: transparent;
+        transform: rotate(85deg);
+        overflow: hidden;
+        margin-right: 24rem;
+        margin-top: 0rem;
+    }
+
+}

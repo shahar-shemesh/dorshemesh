@@ -1,0 +1,36 @@
+<%- include("partials/header") -%>
+
+    <!------ body/main/home-content : START ------>
+    <section class="home-content">
+        <h1>
+            <%= page.pageContent[0] %>
+        </h1>
+        <h3>
+            <%= page.pageContent[1] %>
+        </h3>
+
+    </section>
+    <!------ body/main/home-content : END ------>
+
+
+    <!------ body/main/home-gallery : START ------>
+    <section class="home-gallery">
+
+        <% projects.slice().reverse().forEach(project => { %>
+            <a href= <%= toKebabCase(project.projectName) %>>
+                <div class="gallery-item">
+                    <div class="gallery-img">
+                        <img src= <%= project.images[0] %> alt= <%= project.projectName %> class="image">
+                        <div class="overlay"></div>
+                    </div></a>
+                    <h3 class="gallery-img-text"><%= project.projectName %></h3>
+                </div>
+
+        <% }) %>
+        
+
+    </section>
+    <!------ body/main/home-gallery : END ------>
+
+
+    <%- include("partials/footer") -%>
