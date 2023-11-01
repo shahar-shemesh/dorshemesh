@@ -155,6 +155,7 @@ section {
     opacity: 0;
     transition: .5s;
     background-color: #21d881;
+    object-fit: cover;
 }
 
 
@@ -375,10 +376,23 @@ section {
     }
 
     .image-project img {
-        object-fit: contain;
+        object-fit: cover;
     }
 
 
+    .overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: calc(100% + 2px);
+        height: calc(99%);
+        opacity: 0;
+        transition: .5s;
+        background-color: #21d881;
+        object-fit: cover;
+    }
 
     .project-gallery div {
         height: auto;
