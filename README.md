@@ -3,7 +3,7 @@
 Welcome to the README file for the Graphic Designer Portfolio Website project. This project is a personal website designed and developed by me, showcasing the works and skills of a graphic designer. The website is responsive, ensuring a seamless experience across various devices, including mobile phones and tablets.
 
 ## Live
-- [Live website](https://dorshemesh.cyclic.cloud)
+- [Live website](https://dorshemesh.com)
 
 ## Table of Contents
 
