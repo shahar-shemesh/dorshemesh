@@ -150,8 +150,8 @@ section {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 100%;
-    width: 100%;
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
     opacity: 0;
     transition: .5s;
     background-color: #21d881;
@@ -165,8 +165,9 @@ section {
 }
 
 .gallery-img>img {
-    height: 100%;
-    width: 100%;
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    object-fit: cover;
 }
 
 
