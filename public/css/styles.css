@@ -105,7 +105,6 @@ section {
 
 .home-content h1,
 .home-content h3 {
-    /* שהם הבנים של הום-קונטנט h3 כל האובייקטים */
     font-weight: 200;
     font-size: 2.5rem;
     letter-spacing: -1px;
@@ -173,7 +172,6 @@ section {
 
 
 .gallery-img:hover .overlay {
-    /* שהם הבנים של גלרי-אייטם:הובר .overlay כל האובייקטים מקלאס */
     opacity: 1;
 }
 
