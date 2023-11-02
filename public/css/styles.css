@@ -6,7 +6,7 @@
     scroll-behavior: smooth;
     margin: 0;
     padding: 0;
-    font-family: 'LEMON MILK Pro FTR', sans-serif;
+    font-family: 'LEMON MILK Pro FTR';
     font-weight: normal;
 }
 
@@ -60,7 +60,7 @@ body {
     color: var(--home-text-color);
     cursor: default;
     letter-spacing: -2px;
-    font-family: 'LEMON MILK', sans-serif;
+    font-family: 'LEMON MILK';
     font-weight: 200;
 }
 
@@ -69,7 +69,7 @@ body {
     letter-spacing: -1px;
     color: var(--home-text-color);
     margin-left: .4rem;
-    font-family: 'LEMON MILK Pro FTR', sans-serif;
+    font-family: 'LEMON MILK Pro FTR';
     font-weight: 500;
 }
 
@@ -293,9 +293,9 @@ section {
 .projectName {
     color: var(--project-hover-color);
     letter-spacing: -2px;
-    font-family: 'LEMON MILK Pro FTR', sans-serif;
-    font-weight: bold;
-    font-size: 2.5rem;
+    font-family: 'LEMON MILK Pro FTR';
+    font-size: 3rem;
+    /* font-weight: 500; */
 }
 
 .projectDesc {
