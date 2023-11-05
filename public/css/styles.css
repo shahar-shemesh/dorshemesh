@@ -300,10 +300,10 @@ section {
 
 .projectDesc {
     font-weight: 200;
-    font-size: 2.5rem;
+    font-size: 2rem;
     letter-spacing: -1px;
     line-height: 2.7rem;
-    margin-top: -.2rem;
+    margin-top: 1rem;
 }
 
 .project-gallery {
@@ -354,9 +354,9 @@ section {
         font-weight: 200;
         font-size: 1.5rem;
         letter-spacing: -.3px;
-        margin-top: 0;
+        /* margin-top: 0; */
         line-height: 2.1rem;
-        margin-bottom: 2.5rem;
+        margin-bottom: 2.2rem;
     }
 
 
