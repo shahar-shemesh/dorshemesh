@@ -326,6 +326,10 @@ section {
     height: 100%;
 }
 
+.footer{
+    margin-bottom: 2rem;
+}
+
 @media (max-width: 900px) {
 
     * {
