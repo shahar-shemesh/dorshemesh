@@ -18,7 +18,7 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));   // allow to get data from the client. Parsing URL-encoded bodies in the HTTP requests.
 
 app.set('view engine', 'ejs');                    
-
+app.set("views", path.join(__dirname, "views"));
 
 // Connect to the MongoDB database
 mongoose.connect('mongodb+srv://dorshem:' + process.env.PASS + '@dorshemeshcluster0.gxbxrux.mongodb.net/dorDB', { useNewUrlParser: true }).then(function () {
