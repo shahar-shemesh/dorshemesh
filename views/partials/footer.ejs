@@ -18,14 +18,15 @@
     // define '.logo' color
     document.querySelector(".logo").style.color = 'var(--' + currentPage + '-logo-color)';
 
+    // define mobile-nav color
+    document.querySelector(".menu-btn").style.color = 'var(--' + currentPage + '-nav-color)';
+
     if (currentPage != "project") {
         // add active class to relevant 'navbar a' item
         document.querySelector("#" + currentPage).classList.add("active");
         // define '.navbar a:active' color
         document.querySelector("#" + currentPage).style.color = 'var(--' + currentPage + '-hover-color)';
     }
-
-
 
     // define shadow location
     switch (currentPage) {
@@ -60,6 +61,20 @@
                 event.target.style.color = 'var(--' + currentPage + '-nav-color)';
             });
         }
+    });
+
+
+    // mobile-nav
+    document.querySelector("#active").addEventListener('click', (event) => {
+        if (event.target.checked) {
+            document.querySelector('.menu-btn').style.position = 'fixed';
+            document.querySelector(".menu-btn").style.color = '#00755d';
+            document.querySelector('.menu-btn').innerHTML = 'X';
+        } else {
+            document.querySelector(".menu-btn").style.color = 'var(--' + currentPage + '-nav-color)';
+            document.querySelector('.menu-btn').style.position = 'absolute';
+            document.querySelector('.menu-btn').innerHTML = '///';
+        };
     });
 
 </script>
