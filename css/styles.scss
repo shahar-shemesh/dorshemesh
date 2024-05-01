@@ -435,7 +435,6 @@ section {
     body {
         overflow-x: hidden;
         padding: 0 3%;
-
     }
 
     section {
@@ -571,7 +570,7 @@ section {
     }
 
     .platforms {
-        line-height: 3.2rem;
+        line-height: 2.7rem;
     }
 
     .platforms h3 {
@@ -692,4 +691,10 @@ section {
         display: none;
     }
 
+}
+
+@media (max-width: 200px) {
+    .wrapper {
+        display: none;
+    }
 }
