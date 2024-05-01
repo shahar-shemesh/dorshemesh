@@ -1,5 +1,7 @@
 // @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200;300;400;500;600;700;800;900&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+
 // @import url('./fonts/canopee.css');
 @font-face {
     font-family: 'Canopee';
@@ -324,7 +326,7 @@ section {
 .platforms {
     -webkit-text-stroke: 0.1rem;
     letter-spacing: 1px;
-    line-height: 4.3rem;
+    line-height: 4rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -334,7 +336,7 @@ section {
 
 .contact-content * {
     font-weight: 300;
-    font-size: 3.1rem;
+    font-size: 2.6rem;
     color: #fff;
 }
 
@@ -368,12 +370,11 @@ section {
 
 .projectName {
     color: var(--project-text-color);
-    letter-spacing: 0.5rem;
+    // letter-spacing: 0.2rem;
     /* font-family: 'LEMON MILK Pro FTR', sans-serif; */
-    font-family: 'LEMON-MILK-UltraLight', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-size: 3rem;
-    -webkit-text-stroke: 0.55rem;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 .projectDesc {
