@@ -1,19 +1,32 @@
-require('dotenv').config();                       
- 
-const express = require("express"); 	        
-const bodyParser = require("body-parser");	       
-const ejs = require("ejs");				            
-const mongoose = require("mongoose");               
+require('dotenv').config();
 
-const _ = require("lodash"); 			  
+const express = require("express");
+const bodyParser = require("body-parser");
+const ejs = require("ejs");
+const path = require('path');
+const sassMiddleware = require('node-sass-middleware');
+const mongoose = require("mongoose");
 
-const app = express();	  
+const _ = require("lodash");
+
+const app = express();
+
+// Configure Sass middleware to compile SCSS files
+app.use(sassMiddleware({
+    src: path.join(__dirname, 'css'), // Path to your SCSS files
+    dest: path.join(__dirname, '/public'), // Compiled CSS destination
+    debug: true,
+    outputStyle: 'compressed', // Output style: 'compressed' or 'expanded'
+}));
+
+app.use(express.static("public"));
+
+
 const PORT = 4000;
 app.listen(PORT, () => {
     console.log(`API listening on PORT ${PORT} `)
 });
 
-app.use(express.static("public"));            
 
 app.use(bodyParser.urlencoded({ extended: true }));   // allow to get data from the client. Parsing URL-encoded bodies in the HTTP requests.
 
@@ -24,7 +37,7 @@ app.set('views', './views');
 // Connect to the MongoDB database
 mongoose.connect('mongodb+srv://dorshem:' + process.env.PASS + '@dorshemeshcluster0.gxbxrux.mongodb.net/dorDB', { useNewUrlParser: true }).then(function () {
     console.log("Connected to DB.");
-}).catch(function(err) {
+}).catch(function (err) {
     console.log(err);
 });
 
@@ -100,7 +113,7 @@ app.get("/:kebabName", async (req, res) => {
 
     const kebabName = (req.params.kebabName);
 
-    const page = await Page.findOne({pageName: "project"});
+    const page = await Page.findOne({ pageName: "project" });
 
     Project.find()
         .then(function (allProjects) {
@@ -108,9 +121,9 @@ app.get("/:kebabName", async (req, res) => {
             let projectExist = 0;
 
             allProjects.forEach(project => {
-                if (_.kebabCase(project.projectName) == kebabName){
+                if (_.kebabCase(project.projectName) == kebabName) {
                     projectExist = 1;
-                    res.render('project', {page: page, project: project});
+                    res.render('project', { page: page, project: project });
                 }
             });
 

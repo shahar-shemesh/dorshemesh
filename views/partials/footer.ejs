@@ -26,11 +26,32 @@
     }
 
 
+
+    // define shadow location
+    switch (currentPage) {
+        case "contact":
+            document.querySelector("#shadow").style.top = "-50%";
+            break;
+        case "about":
+            document.querySelector("#shadow").style.right = "45%";
+            document.querySelector("#shadow").style.top = "-50%";
+            break;
+        case "home":
+            document.querySelector("#shadow").style.display = "none";
+            break;
+        default:
+            document.querySelector("#shadow").style.left = "40%";
+            document.querySelector("#shadow").style.bottom = "-90%";
+    }
+
+
     // define '.navbar a, .navbar a:hover' color
     document.querySelectorAll(".navbar a").forEach((a) => {
+        a.style.webkitTextStrokeColor = 'var(--' + currentPage + '-text-stroke-color)';
 
         if (a.className != 'active') {
             a.style.color = 'var(--' + currentPage + '-nav-color)';
+
             a.addEventListener('mouseover', function (event) {
                 event.target.style.color = 'var(--' + currentPage + '-hover-color)';
             });
