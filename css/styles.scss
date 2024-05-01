@@ -132,7 +132,7 @@ a:active {
 
 .logo {
     color: var(--home-text-color);
-    cursor: default;
+    cursor: pointer;
     letter-spacing: -2px;
     font-family: 'Canopee', sans-serif;
     font-weight: 200;
@@ -504,7 +504,6 @@ section {
         grid-template-columns: 1fr;
         justify-content: center;
         margin-top: 3vh;
-        gap: 0.5rem;
     }
 
     .gallery-item {
@@ -569,6 +568,10 @@ section {
         font-size: 1rem;
         letter-spacing: 1px;
         line-height: 1.6rem;
+    }
+
+    .platforms {
+        line-height: 3.2rem;
     }
 
     .platforms h3 {
