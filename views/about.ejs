@@ -7,18 +7,19 @@
         <!-- <p class="about-me">ABOUT ME</p> -->
 
 
-        <span class="intro">
+        <div class="intro">
 
-            <img class="about_img" src="/about_img.jpg" alt="">
+            <img class="about_img" src="/green_about_img.png" alt="">
 
-           <%= page.pageContent[0] %>
-           <%= page.pageContent[1] %>
+            <div class="aboutText">
+                <%= page.pageContent[0] %>
+                <%= page.pageContent[1] %>
+            </div>
 
-        </span>
+        </div>
 
     </section>
     <!--   body/main/about-content : END    -->
 
 
-<%- include("partials/footer") -%>
-
+    <%- include("partials/footer") -%>

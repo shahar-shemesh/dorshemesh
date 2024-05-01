@@ -1,6 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200;300;400;500;600;700;800;900&display=swap');
-@import url('./fonts/canopee.css');
-@import url('./fonts/lemonmilk.css');
+// @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200;300;400;500;600;700;800;900&display=swap');
+
+// @import url('./fonts/canopee.css');
+@font-face {
+    font-family: 'Canopee';
+    src: url("css/fonts/canopee/Canopee-Regular.woff2") format("woff2"),
+        url("css/fonts/canopee/Canopee-Regular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap
+}
+
+// @import url('./fonts/lemonmilk.css');
+@font-face {
+    font-family: 'LEMON-MILK-UltraLight';
+    src: url('css/fonts/lemonMilk/LEMONMILKProFTR-UltraLight.woff2') format('woff2'),
+        url('css/fonts/lemonMilk/LEMONMILKProFTR-UltraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
 
 * {
     box-sizing: border-box;
@@ -60,6 +79,16 @@ body {
 }
 
 
+a {
+    text-decoration: none;
+    color: var(--home-bg-color);
+}
+
+a:visited, a:hover, a:focus, a:active {
+    text-decoration: none;
+}
+
+
 /******************** Navbar : START ********************/
 
 .navbar {
@@ -69,7 +98,6 @@ body {
     line-height: 0.85;
     font-size: 7rem;
 }
-
 
 
 .header {
@@ -88,7 +116,7 @@ body {
     font-family: 'Canopee', sans-serif;
     font-weight: 200;
     line-height: 0.75;
-    width: 31rem;
+    width: 30%;
 }
 
 .firstName,
@@ -97,11 +125,11 @@ body {
 }
 
 .firstName {
-    font-size: 15rem;
+    font-size: 14.6rem;
 }
 
 .lastName {
-    font-size: 10rem;
+    font-size: 9.6rem;
 }
 
 .navbar a {
@@ -126,7 +154,7 @@ body {
 /******************** Section : START ********************/
 
 section {
-    min-height: 10vm;
+    min-height: 10vw;
     padding: 1rem 4%;
     /* top=10rem, right&left=9%, bottom=2rem*/
 }
@@ -145,10 +173,10 @@ section {
 
 .home-content {
     display: flex;
-    width: 31rem;
+    width: 30%;
     /* font-size: 1rem; */
     padding-right: 0;
-    
+
 }
 
 .home-content h1,
@@ -176,18 +204,16 @@ section {
 
 /* home-gallery */
 .home-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: space-between;
-
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .gallery-item {
     flex-basis: 49%;
     /* Adjust the value as needed */
     text-align: center;
-    margin-bottom: 8rem;
+
+    height: 30vw;
 }
 
 .overlay {
@@ -202,6 +228,7 @@ section {
     transition: .5s;
     background-color: var(--home-nav-color);
     object-fit: cover;
+    display: flex;
 }
 
 
@@ -223,9 +250,11 @@ section {
 }
 
 .gallery-img-text {
-    text-align: left;
+    font-family: 'Canopee', sans-serif;
+    font-size: 7rem;
+    margin: auto;
+    text-align: center;
     padding-top: 1rem;
-    font-size: 1.8rem;
 }
 
 /******************** Home gallery : END ********************/
@@ -244,56 +273,39 @@ section {
 
 /******************** about content : START ********************/
 
-.about-content * {
-    font-weight: 200;
-    font-size: 1.9rem;
-    font-family: 'LEMON-MILK-UltraLight', sans-serif;
-}
 
 .about-me {
     color: white;
     font-size: 3rem;
     text-align: center;
-
 }
-
-
 
 
 .intro {
     /* display: inline-flex;
     justify-content: space-around; */
-    display: block;
-    margin: auto;
-    text-align: center;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 3rem;
 }
 
 .about_img {
-    border-radius: 50%;
-    /* position: relative;
-    right: 4rem;
-    bottom: 5rem;
-    z-index: 100; */
     display: block;
-    margin: auto;
     text-align: center;
-    width: 20%;
+    width: 30%;
     margin-bottom: 2.5rem;
 }
 
-.intro>h3 {
-    font-size: 1.9rem;
-    width: 68%;
-    align-self: flex-end;
+.aboutText {
+    width: 40%;
+    font-family: 'LEMON-MILK-UltraLight', sans-serif;
+    -webkit-text-stroke: 0.8px;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    line-height: 2.1rem;
 }
 
-
-
-.intro>span {
-    background-color: var(--about-logo-color);
-    width: 19rem;
-    height: 19rem;
-}
 
 
 /******************** about content : END ********************/
@@ -350,17 +362,17 @@ section {
 .project-content {
     display: flex;
     flex-direction: column;
-    width: 50rem;
+    width: 55rem;
     padding: 0 4% 1.5rem 4%;
-    font-size: 1rem;
 }
 
 .projectName {
     color: var(--project-text-color);
-    letter-spacing: -2px;
+    letter-spacing: 0.5rem;
     /* font-family: 'LEMON MILK Pro FTR', sans-serif; */
-    font-family: 'Unbounded', sans-serif;
+    font-family: 'LEMON-MILK-UltraLight', sans-serif;
     font-size: 3rem;
+    -webkit-text-stroke: 0.55rem;
     font-weight: 500;
 }
 
@@ -369,6 +381,7 @@ section {
     letter-spacing: 1px;
     line-height: 1.8rem;
     -webkit-text-stroke: 0.06rem;
+    font-size: 1.2rem;
     font-family: 'LEMON-MILK-UltraLight', sans-serif;
 }
 
@@ -378,14 +391,13 @@ section {
 }
 
 .project-gallery div {
-    height: 80vh;
+    height: 75vh;
     position: relative;
 }
 
 .image-project img {
     object-fit: cover;
     vertical-align: middle;
-
     width: 100%;
     height: 100%;
 }

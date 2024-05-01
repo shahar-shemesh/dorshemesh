@@ -13,22 +13,25 @@
 
 
     <!------ body/main/home-gallery : START ------>
-    <section class="home-gallery">
 
+    <section class="home-gallery">
         <!-- projects.slice().reverse().forEach()   for reverse list projects -->
         <% projects.forEach(project => { %>
             <a href= <%= toKebabCase(project.projectName) %>>
                 <div class="gallery-item">
                     <div class="gallery-img">
                         <img src= <%= project.mainImg %> alt= <%= project.projectName %> class="image">
-                        <div class="overlay"></div>
-                    </div></a>
-                    <h3 class="gallery-img-text"><%= project.projectName %></h3>
+                        <div class="overlay">
+                            <div class="gallery-img-text"><%= project.projectName %></div>
+                        </div>
+                    </div>
                 </div>
+            </a>
         <% }) %>
-        
-
     </section>
+
+
+
 
 
     <!------ body/main/home-gallery : END ------>
