@@ -710,12 +710,10 @@ section {
 
     input[type="checkbox"] {
         display: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        pointer-events: none;
     }
 
-}
-
-@media (max-width: 200px) {
-    .wrapper {
-        display: none;
-    }
 }
