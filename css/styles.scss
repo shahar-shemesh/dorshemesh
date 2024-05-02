@@ -43,11 +43,13 @@ html {
 
 
 :root {
+    
     --home-bg-color: #00755d;
     --home-nav-color: rgb(215, 252, 51);
     --home-logo-color: rgb(215, 252, 51);
     --home-text-color: #ffffff;
-    --home-hover-color: rgba(0, 117, 93);
+    --home-hover-color: transparent;
+    // --home-hover-color: rgba(0, 117, 93);
     --home-text-stroke-color: #d7fc33;
 
 
@@ -55,7 +57,7 @@ html {
     --about-nav-color: rgba(0, 117, 93);
     --about-logo-color: rgba(0, 117, 93);
     --about-text-color: rgba(0, 117, 93);
-    --about-hover-color: #ffffff;
+    --about-hover-color: transparent;
     --about-text-stroke-color: rgba(0, 117, 93);
 
 
@@ -63,14 +65,14 @@ html {
     --contact-nav-color: #d7fc33;
     --contact-logo-color: rgb(215, 252, 51);
     --contact-text-color: #ffffff;
-    --contact-hover-color: rgba(0, 117, 93);
+    --contact-hover-color: transparent;
     --contact-text-stroke-color: rgb(215, 252, 51);
 
     --project-bg-color: #ffffff;
     --project-nav-color: rgba(0, 117, 93);
     --project-logo-color: rgba(0, 117, 93);
     --project-text-color: rgba(0, 117, 93);
-    --project-hover-color: #ffffff;
+    --project-hover-color: transparent;
     --project-text-stroke-color: rgba(0, 117, 93);
 
 }
@@ -164,7 +166,8 @@ a:active {
 }
 
 .navbar a.active {
-    color: var(--home-hover-color);
+    // color: var(--home-hover-color);
+    color: transparent;
 }
 
 /******************** Navbar : END ********************/
@@ -227,6 +230,10 @@ section {
 .home-gallery {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+}
+
+.home-gallery a {
+    cursor: url('/cursor/gallery-cursor.png'), url('/cursor/gallery-cursor.svg'), url('/cursor/gallery-cursor.cur'), default;
 }
 
 .gallery-item {
@@ -430,6 +437,7 @@ section {
 
     * {
         text-align: left;
+        -webkit-tap-highlight-color: transparent;
     }
 
     body {
@@ -464,6 +472,13 @@ section {
         font-family: 'Canopee', sans-serif;
         line-height: 0.75;
         width: 30%;
+        -webkit-transition: all 0.15s ease;
+        transition: all 0.15s ease;
+    }
+
+    .logo:active {
+        -webkit-transform: scale(0.95);
+        transform: scale(0.95);
     }
 
     .firstName,
@@ -571,6 +586,16 @@ section {
 
     .platforms {
         line-height: 2.7rem;
+    }
+
+    .platforms a {
+        -webkit-transition: all 0.15s ease;
+        transition: all 0.15s ease;
+    }
+
+    .platforms a:active {
+        -webkit-transform: scale(0.95);
+        transform: scale(0.95);
     }
 
     .platforms h3 {
