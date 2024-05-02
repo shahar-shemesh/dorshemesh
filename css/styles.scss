@@ -94,10 +94,10 @@ body {
     color: var(--home-text-color);
 }
 
-
 a {
     text-decoration: none;
     color: var(--home-bg-color);
+    cursor: url('/cursor/gallery-cursor.png'), url('/cursor/gallery-cursor.svg'), url('/cursor/gallery-cursor.cur'), default;
 }
 
 a:visited,
@@ -134,7 +134,7 @@ a:active {
 
 .logo {
     color: var(--home-text-color);
-    cursor: pointer;
+    cursor: url('/cursor/gallery-cursor.png'), url('/cursor/gallery-cursor.svg'), url('/cursor/gallery-cursor.cur'), default;
     letter-spacing: -2px;
     font-family: 'Canopee', sans-serif;
     font-weight: 200;
@@ -232,9 +232,6 @@ section {
     grid-template-columns: repeat(2, 1fr);
 }
 
-.home-gallery a {
-    cursor: url('/cursor/gallery-cursor.png'), url('/cursor/gallery-cursor.svg'), url('/cursor/gallery-cursor.cur'), default;
-}
 
 .gallery-item {
     flex-basis: 49%;
@@ -467,7 +464,6 @@ section {
 
     .logo {
         color: var(--home-text-color);
-        cursor: default;
         letter-spacing: -2px;
         font-family: 'Canopee', sans-serif;
         line-height: 0.75;
