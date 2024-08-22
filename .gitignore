@@ -2,4 +2,6 @@ node_modules
 .env
 sketches
 .pdf
-.py
+
+crawling_mail.py
+
