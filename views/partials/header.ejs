@@ -25,7 +25,7 @@
     <link rel="manifest" href="/site.webmanifest">
 
     <!-- custom css -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 
 
@@ -35,36 +35,58 @@
     <div id="shadow"></div>
     <!--   body/shadow : END    -->
 
-    <!--    body/header : START    -->
-    <header class="header">
-        <a href="/" class="logo">
-            <p class="firstName">DOR</p>
-            <p class="lastName">SHEMESH</p>
-        </a>
 
 
-        <nav class="navbar">
-            <a href="/about" id="about">ABOUT</a>
-            <a href="/" id="home">WORKS</a>
-            <a href="/contact" id="contact">CONTACT</a>
+    <% if (isAuthenticated) { %>
+        <nav class="admin-nav">
+            <ul>
+                <li><a href="/admin/dashboard">Dashboard</a></li>
+                <li><a href="/admin/users">Manage Users</a></li>
+                <li><a href="/admin/settings">Settings</a></li>
+                <li>
+                    <form action="/admin/logout" method="post">
+                        <%- include('../admin/csrf-input.ejs') %>
+                            <button type="submit">Logout</button>
+                    </form>
+                </li>
+            </ul>
         </nav>
-
-        <div class="mobile-nav">
-            <input type="checkbox" id="active">
-            <label for="active" class="menu-btn">///</label>
-            <div class="wrapper" data-disable-page-zoom="false">
-                <ul>
-                    <li><a href="/about" id="about">ABOUT</a></li>
-                    <li><a href="/" id="home">WORKS</a></li>
-                    <li><a href="/contact" id="contact">CONTACT</a></li>
-                </ul>
-            </div>
-        </div>
+        <% } %>
 
 
-    </header>
-    <!--   body/header : END    -->
 
 
-    <!--   body/main : START    -->
-    <main class="main">
+
+            <!--    body/header : START    -->
+            <header class="header">
+                <a href="/" class="logo">
+                    <p class="firstName">DOR</p>
+                    <p class="lastName">SHEMESH</p>
+                </a>
+
+
+                <nav class="navbar">
+                    <a href="/about" id="about">ABOUT</a>
+                    <a href="/" id="home">WORKS</a>
+                    <a href="/contact" id="contact">CONTACT</a>
+                </nav>
+
+                <div class="mobile-nav">
+                    <input type="checkbox" id="active">
+                    <label for="active" class="menu-btn">///</label>
+                    <div class="wrapper" data-disable-page-zoom="false">
+                        <ul>
+                            <li><a href="/about" id="about">ABOUT</a></li>
+                            <li><a href="/" id="home">WORKS</a></li>
+                            <li><a href="/contact" id="contact">CONTACT</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </header>
+            <!--   body/header : END    -->
+
+
+            <!--   body/main : START    -->
+            <main class="main">

@@ -1,0 +1,29 @@
+<%- include("../partials/header.ejs") -%>
+
+    <!------ body/main : START ------>
+
+
+    <form class="login-form" action="/signup" method="POST">
+        <div class="form-control">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email">
+        </div>
+        <div class="form-control">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+        </div>
+        <div class="form-control">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" name="confirmPassword" id="confirmPassword">
+        </div>
+        <%- include('./csrf-input.ejs') -%>
+            <button class="btn" type="submit">Signup</button>
+    </form>
+
+
+    <!------ body/main : END ------>
+
+
+    <%- include("../partials/footer.ejs", { page: { pageName: 'Admin Page' } }) -%>
+
+    
