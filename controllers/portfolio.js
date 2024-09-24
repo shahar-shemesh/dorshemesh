@@ -11,26 +11,6 @@ const Page = require('../models/page');
 const toKebabCase = str => _.kebabCase(str);
 
 
-// exports.getIndex = (req, res) => {
-//     Page.findOne({ pageName: "home" })
-//         .then(function (page) {
-//             Project.find()
-//                 .then(function (projects) {
-//                     res.render('home',
-//                         {
-//                             page: page,
-//                             projects: projects,
-//                             toKebabCase: toKebabCase
-//                         }
-//                     );
-//                 })
-//         })
-//         .catch(function (err) {
-//             res.redirect('/');
-//         });
-// };
-
-
 exports.getIndex = async (req, res) => {
     const indexPage = await Page.findOne({ pageName: "home" });
     if (indexPage) {
