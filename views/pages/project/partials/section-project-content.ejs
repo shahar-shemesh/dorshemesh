@@ -1,0 +1,49 @@
+<section class="project-content">
+
+
+
+
+
+
+
+    <% if (!isAuthenticated || !editing) { %>
+        <h1 class="projectName">
+            <%= project.projectName %>
+        </h1>
+    
+        <h3 class="projectDesc">
+            <%= project.projectDesc %>
+        </h3>
+        
+        
+        
+    <% } else { %>
+        <form action="/admin/edit-project" method="POST">
+            <input class="projectName" name="projectName" id="projectName" value="<%= project.projectName %>">
+            <textarea class="projectDesc" name="projectDesc" id="projectDesc" rows="6"><%= project.projectDesc %></textarea>
+
+            <%- include('../../../admin/csrf-input.ejs') %>
+
+
+            <div class="save-btn-container">
+                <button class="save-btn" type="submit">Save</button>
+                <button id="cancel-btn" class="cancel-btn">Cancel</button>
+            </div>
+
+
+            <input type="hidden" value="<%= project.projectName %>" name="projectName">
+            <input type="hidden" value="<%= project.projectDesc %>" id="previousContent" name="previousContent">
+        </form>
+            
+    <% } %>
+
+
+
+
+
+
+
+
+
+
+</section>

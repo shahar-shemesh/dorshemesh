@@ -1,22 +1,31 @@
 const _ = require("lodash");
+const bcrypt = require('bcryptjs');
 
 
 /* --------------------- Models --------------------- */
 const Project = require('../models/project');
 const Page = require('../models/page');
+const User = require('../models/user');
+/* -------------------------------------------------- */
+
+/* --------------------- Controllers --------------------- */
+const portfolioController = require('../controllers/portfolio');
 /* ------------------------------------------------------- */
 
 
 
-const bcrypt = require('bcryptjs');
-
-const User = require('../models/user');
-
 exports.getLogin = (req, res, next) => {
-    res.render('admin/login', {
-        pageTitle: 'ADMIN Login',
-        path: '/'
-    });
+    if (!req.session.isLoggedIn) {
+        res.render('base', {
+            content: 'admin/login',
+            page: { pageName: "home" },
+            path: '/admin'
+        });
+    }
+    else {
+        return res.redirect('/');
+    }
+
 };
 
 
@@ -28,6 +37,7 @@ exports.postLogin = async (req, res, next) => {
         const doMatch = await bcrypt.compare(password, user.password);
         if (doMatch) {
             req.session.isLoggedIn = true;
+            req.session.editing = false;
             req.session.user = user;
             await req.session.save();
             return res.redirect('/');
@@ -42,11 +52,23 @@ exports.postLogin = async (req, res, next) => {
 
 
 
+exports.getMode = async (req, res, next) => {
+    const editing = req.query.editing;
+    
+    req.session.editing = await (editing?.toLowerCase?.() === 'true');
+
+    return res.redirect(req.get('Referer') || '/');
+};
+
+
+
+
 exports.getSignup = (req, res, next) => {
-    res.render('admin/signup', {
+    res.render('base', {
+        page: { pageName: "home" },
+        content: 'admin/signup',
         pageTitle: 'Signup',
-        isAuthenticated: false,
-        path: '/signup',
+        path: '/admin/signup',
     });
 };
 
@@ -62,8 +84,7 @@ exports.postSignup = async (req, res, next) => {
         const hashedPassword = await bcrypt.hash(password, 12);
         const user = new User({
             email: email,
-            password: hashedPassword,
-            cart: { items: [] }
+            password: hashedPassword
         });
         await user.save();
         res.redirect('/');
@@ -82,5 +103,48 @@ exports.postLogout = (req, res, next) => {
         res.redirect('/');
     });
 };
+
+
+//document.getElementById('home-content').innerText
+
+exports.postEditPageContent = async (req, res, next) => {
+    const currentPage = req.body.page;
+    const updatedContent = req.body.content;
+
+    const page = await Page.findOne({ pageName: currentPage });
+    try {
+        page.pageContent = updatedContent;
+        await page.save();
+        res.redirect('/' + currentPage);
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+// exports.getAdminDashboard = (req, res, next) => {
+//     // שמירה על הלוגיקה והדאטה המקוריים
+//     portfolioController.getIndex(req, {
+//       ...res, // מפעילים את אותו response
+//       render: (view, options) => {
+//         // החלפה של ה-view
+//         res.render('base', {
+//           ...options, // שמירה על כל שאר האפשרויות המקוריות
+//           content: 'pages/home/index',
+//           pageTitle: 'Admin - Home',
+//           path: '/admin'
+//         });
+//       },
+//     }, next);
+//   };
 
 

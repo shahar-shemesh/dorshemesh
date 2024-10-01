@@ -12,12 +12,6 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 const { csrfSync } = require('csrf-sync');
 
 
-/* --------------------- Controllers --------------------- */
-const portfolioController = require('./controllers/portfolio');
-const adminController = require('./controllers/admin');
-/* ------------------------------------------------------- */
-
-
 /* --------------------- Routes --------------------- */
 const portfolioRoutes = require('./routes/portfolio');
 const adminRoutes = require('./routes/admin');
@@ -58,13 +52,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use(session({                  // הגדרת הסשן
-    secret: 'my secret',             // מחרוזת סודית המשמשת לחתום את המזהה של הסשן בעוגייה
+    secret: 'DORSHEMESHMHFC',             // מחרוזת סודית המשמשת לחתום את המזהה של הסשן בעוגייה
     resave: false,                   // קובע האם לשמור את הסשן בכל בקשה, אפילו אם לא היה שינוי במידע. עדיף להגדיר שקר כדי לשפר ביצועים
     saveUninitialized: false,        // קובע אם לשמור סשן ריק. הגדרה לשקר תבטיח שלא יישמר סשן ללא צורך
     store: store,                    // שימוש בחנות הסשנים שהגדרנו
 }));
 
 
+const { generateToken, csrfSynchronisedProtection } = csrfSync({
+    ignoredMethods: ["GET", "HEAD", "OPTIONS"],
+    getTokenFromRequest: (req) => {                   // Used to retrieve the token submitted by the user in a form
+        return req.body["_csrf"];
+    },
+});
+app.use(csrfSynchronisedProtection);                // הגדרת אמצעי הגנה ל-CSRF דרך ה-session
 
 
 
@@ -82,36 +83,28 @@ app.use((req, res, next) => {
 });
 
 
-const { csrfSynchronisedProtection } = csrfSync({
-    getTokenFromRequest: (req) => {                   // Used to retrieve the token submitted by the user in a form
-        return req.body["_csrf"];
-    },
-});
-app.use(csrfSynchronisedProtection);                // הגדרת אמצעי הגנה ל-CSRF דרך ה-session
-
 
 
 app.use((req, res, next) => {
-    res.locals.isAuthenticated = req.session.isLoggedIn;
-    // res.locals.csrfToken = generateToken(req);
-    res.locals.csrfToken = req.csrfToken();
+
+    // בדוק אם המשתמש מחובר ורק אז צור CSRF token ו-session
+    if (req.session.isLoggedIn) {
+        res.locals.isAuthenticated = true;
+        res.locals.editing = req.session.editing;
+        res.locals.csrfToken = req.csrfToken(); // יצירת CSRF token למשתמשים מחוברים
+    } else {
+        res.locals.isAuthenticated = false;
+        res.locals.editing = false;
+    }
+
+    // צור CSRF token עבור טפסים קריטיים כמו התחברות
+    if (req.path.startsWith('/admin')) {
+        res.locals.csrfToken = req.csrfToken(); // יצירת CSRF token בטפסי התחברות ורישום
+    }
+
+
     next();
 });
-
-
-
-
-
-
-
-
-// // Connect to the MongoDB database
-// mongoose.connect(MONGODB_URI, { useNewUrlParser: true }).then(function () {
-//     console.log("Connected to DB.");
-// }).catch(function (err) {
-//     console.log(err);
-// });
-
 
 
 
@@ -119,10 +112,6 @@ app.use((req, res, next) => {
 app.use('/admin', adminRoutes);
 app.use(portfolioRoutes);
 /* ------------------------------------------------------- */
-
-
-
-
 
 
 
@@ -136,7 +125,7 @@ async function main() {
         await mongoose.connection.db.admin().command({ ping: 1 });
         console.log("connected to mongoDB");
 
-        const PORT = 4000;
+        const PORT = 3000;
         app.listen(PORT, () => {
             console.log(`API listening on PORT ${PORT} `)
         });

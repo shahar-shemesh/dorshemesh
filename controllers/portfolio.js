@@ -14,10 +14,12 @@ const toKebabCase = str => _.kebabCase(str);
 exports.getIndex = async (req, res) => {
     const indexPage = await Page.findOne({ pageName: "home" });
     if (indexPage) {
-        res.render('home', {
+        // const template = req.session.isLoggedIn ? 'admin/edit-pages/home' : 'pages/home';
+        res.render('base', {
+            content: 'pages/home/index',
             page: indexPage,
             projects: await Project.find(),
-            toKebabCase: toKebabCase
+            toKebabCase: toKebabCase,
         })
     } else {
         res.redirect('/');
@@ -26,11 +28,13 @@ exports.getIndex = async (req, res) => {
 
 
 
-
 exports.getAbout = (req, res) => {
     Page.findOne({ pageName: "about" })
         .then(function (page) {
-            res.render('about', { page: page });
+            res.render('base', {
+                content: 'pages/about/index',
+                page: page
+            });
         })
         .catch(function (err) {
             res.redirect('/');
@@ -41,7 +45,10 @@ exports.getAbout = (req, res) => {
 exports.getContact = (req, res) => {
     Page.findOne({ pageName: "contact" })
         .then(function (page) {
-            res.render('contact', { page: page });
+            res.render('base', {
+                content: 'pages/contact/index',
+                page: page
+            });
         })
         .catch(function (err) {
             res.redirect('/');
@@ -68,7 +75,11 @@ exports.getProject = async (req, res) => {
         });
 
         if (projectFounded) {
-            res.render('project', { page, project: projectFounded });
+            res.render('base', {
+                content: 'pages/project/index',
+                page: page,
+                project: projectFounded
+            });
         } else {
             res.redirect('/');
         }

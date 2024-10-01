@@ -1,8 +1,4 @@
-<%- include("../partials/header.ejs") -%>
-
-    <!------ body/main : START ------>
-
-
+<section class="login-section">
     <form class="login-form" action="/admin/login" method="POST">
         <div class="form-control">
             <label for="email">Email</label>
@@ -13,12 +9,7 @@
             <input type="password" name="password" id="password">
         </div>
         <%- include('./csrf-input.ejs') -%>
-            <button class="btn" type="submit">Login</button>
+            <button class="login-btn" type="submit">Login</button>
     </form>
 
-
-
-    <!------ body/main : END ------>
-
-
-    <%- include("../partials/footer.ejs", { page: { pageName: 'Admin Login Page' } }) -%>
+</section>

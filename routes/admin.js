@@ -7,7 +7,8 @@ const adminController = require('../controllers/admin');
 const router = express.Router();
 
 
-// /admin => GET
+
+// /admin/login => GET
 router.get('/', adminController.getLogin);
 
 
@@ -16,14 +17,30 @@ router.post('/login', adminController.postLogin);
 
 
 // /admin/signup => GET
-router.get('/signup', adminController.getSignup);
+router.get('/signup', isAuth, adminController.getSignup);
+
 
 // /admin/signup => POST
-router.post('/signup', adminController.postSignup);
+router.post('/signup', isAuth, adminController.postSignup);
 
 
 // /admin/logout => POST
-router.post('/logout', adminController.postLogout);
+router.post('/logout', isAuth, adminController.postLogout);
+
+
+// /admin/mode => GET
+router.get('/mode', isAuth, adminController.getMode);
+
+
+
+// /admin/edit-content => POST
+router.post('/edit-content', isAuth, adminController.postEditPageContent);
+
+
+
+
+
+
 
 
 // // /admin/add-product => GET

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description"
+        content="Hi. My name is Dor Shemesh, and I specialize in branding, advertising, design strategies and user experience. I bring a blend of thoughtfulness, relevance and style to the world of branding. My ultimate goal is to instinctively identify the most important and authentic elements to intuitively convey a brand's story.">
+    <meta name="keywords"
+        content="Dor Shemesh, Dor, Shemesh, Branding, Advertising, Design, Strategies, User experience">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Dor Shemesh">
+
+    <title>DORSHEMESH</title>
+
+    <!-- fonts -->
+    <!-- <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/lemonmilk">
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/lemon-milk">
+    <link rel="stylesheet" href="/fonts/lemonmilk.css"> -->
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+
+<body>
+
+    <% if (isAuthenticated) { %>
+        <%- include("admin/admin-navbar.ejs") -%>
+            <% } %>
+
+                <!--    body/shadow : START    -->
+                <div id="shadow"></div>
+                <!--   body/shadow : END    -->
+
+                <!--    body/header : START    -->
+                <header class="header">
+                    <a href="/" class="logo">
+                        <p class="firstName">DOR</p>
+                        <p class="lastName">SHEMESH</p>
+                    </a>
+
+
+                    <nav class="navbar">
+                        <a href="/about" id="about">ABOUT</a>
+                        <a href="/" id="home">WORKS</a>
+                        <a href="/contact" id="contact">CONTACT</a>
+                    </nav>
+
+                    <div class="mobile-nav">
+                        <input type="checkbox" id="active">
+                        <label for="active" class="menu-btn">///</label>
+                        <div class="wrapper" data-disable-page-zoom="false">
+                            <ul>
+                                <li><a href="/about" id="about">ABOUT</a></li>
+                                <li><a href="/" id="home">WORKS</a></li>
+                                <li><a href="/contact" id="contact">CONTACT</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </header>
+                <!--   body/header : END    -->
+
+
+                <!--   body/main : START    -->
+                <main class="main">
+
+
+                    <%- include(content) %>
+
+
+                </main>
+                <!--   body/main : END    -->
+
+
+
+                <script type="text/javascript">
+                    const currentPage = "<%= page.pageName %>";
+
+
+
+                    // define background color
+                    document.querySelector("body").style.backgroundColor = 'var(--' + currentPage + '-bg-color)';
+
+                    // define text color
+                    document.querySelector("body").style.color = 'var(--' + currentPage + '-text-color)';
+
+                    // define '.logo' color
+                    document.querySelector(".logo").style.color = 'var(--' + currentPage + '-logo-color)';
+
+                    // define mobile-nav color
+                    document.querySelector(".menu-btn").style.color = 'var(--' + currentPage + '-nav-color)';
+
+                    if (currentPage != "project") {
+                        // add active class to relevant 'navbar a' item
+                        document.querySelector("#" + currentPage).classList.add("active");
+                        // define '.navbar a:active' color
+                        document.querySelector("#" + currentPage).style.color = 'var(--' + currentPage + '-hover-color)';
+                    }
+
+                    // define shadow location
+                    switch (currentPage) {
+                        case "contact":
+                            document.querySelector("#shadow").style.top = "-5%";
+                            break;
+                        case "about":
+                            document.querySelector("#shadow").style.right = "45%";
+                            document.querySelector("#shadow").style.top = "-50%";
+                            break;
+                        case "home":
+                            document.querySelector("#shadow").style.display = "none";
+                            break;
+                        default:
+                            document.querySelector("#shadow").style.left = "40%";
+                            document.querySelector("#shadow").style.bottom = "-90%";
+                    }
+
+
+                    // define '.navbar a, .navbar a:hover' color
+                    document.querySelectorAll(".navbar a").forEach((a) => {
+                        a.style.webkitTextStrokeColor = 'var(--' + currentPage + '-text-stroke-color)';
+
+                        if (a.className != 'active') {
+                            a.style.color = 'var(--' + currentPage + '-nav-color)';
+
+                            a.addEventListener('mouseover', function (event) {
+                                event.target.style.color = 'var(--' + currentPage + '-hover-color)';
+                            });
+
+                            a.addEventListener('mouseout', function (event) {
+                                event.target.style.color = 'var(--' + currentPage + '-nav-color)';
+                            });
+                        }
+                    });
+
+
+                    // mobile-nav
+                    document.querySelector("#active").addEventListener('click', (event) => {
+                        if (event.target.checked) {
+                            document.querySelector('.menu-btn').style.position = 'fixed';
+                            document.querySelector(".menu-btn").style.color = '#00755d';
+                            document.querySelector('.menu-btn').innerHTML = 'X';
+                        } else {
+                            document.querySelector(".menu-btn").style.color = 'var(--' + currentPage + '-nav-color)';
+                            document.querySelector('.menu-btn').style.position = 'absolute';
+                            document.querySelector('.menu-btn').innerHTML = '///';
+                        };
+                    });
+
+                    // zoom handling
+                    document.addEventListener('touchmove', function (event) {
+                        if (event.scale !== 1) {
+                            event.preventDefault();
+                        }
+                    }, { passive: false });
+
+                </script>
+                <script src="/js/main.js"></script>
+</body>
+
+</html>
