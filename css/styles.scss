@@ -44,36 +44,45 @@ html {
 
 :root {
 
-    --home-bg-color: #00755d;
-    --home-nav-color: rgb(215, 252, 51);
-    --home-logo-color: rgb(215, 252, 51);
-    --home-text-color: #ffffff;
-    --home-hover-color: transparent;
+    --bg-color: #00755d;
+    --nav-color: rgb(215, 252, 51);
+    --logo-color: rgb(215, 252, 51);
+    --text-color: #ffffff;
+    --hover-color: transparent;
     // --home-hover-color: rgba(0, 117, 93);
-    --home-text-stroke-color: #d7fc33;
+    --text-stroke-color: #d7fc33;
 
 
-    --about-bg-color: #ffffff;
-    --about-nav-color: rgba(0, 117, 93);
-    --about-logo-color: rgba(0, 117, 93);
-    --about-text-color: rgba(0, 117, 93);
-    --about-hover-color: transparent;
-    --about-text-stroke-color: rgba(0, 117, 93);
+    // --home-bg-color: #00755d;
+    // --home-nav-color: rgb(215, 252, 51);
+    // --home-logo-color: rgb(215, 252, 51);
+    // --home-text-color: #ffffff;
+    // --home-hover-color: transparent;
+    // // --home-hover-color: rgba(0, 117, 93);
+    // --home-text-stroke-color: #d7fc33;
 
 
-    --contact-bg-color: rgba(0, 117, 93);
-    --contact-nav-color: #d7fc33;
-    --contact-logo-color: rgb(215, 252, 51);
-    --contact-text-color: #ffffff;
-    --contact-hover-color: transparent;
-    --contact-text-stroke-color: rgb(215, 252, 51);
+    // --about-bg-color: #ffffff;
+    // --about-nav-color: rgba(0, 117, 93);
+    // --about-logo-color: rgba(0, 117, 93);
+    // --about-text-color: rgba(0, 117, 93);
+    // --about-hover-color: transparent;
+    // --about-text-stroke-color: rgba(0, 117, 93);
 
-    --project-bg-color: #ffffff;
-    --project-nav-color: rgba(0, 117, 93);
-    --project-logo-color: rgba(0, 117, 93);
-    --project-text-color: rgba(0, 117, 93);
-    --project-hover-color: transparent;
-    --project-text-stroke-color: rgba(0, 117, 93);
+
+    // --contact-bg-color: rgba(0, 117, 93);
+    // --contact-nav-color: #d7fc33;
+    // --contact-logo-color: rgb(215, 252, 51);
+    // --contact-text-color: #ffffff;
+    // --contact-hover-color: transparent;
+    // --contact-text-stroke-color: rgb(215, 252, 51);
+
+    // --project-bg-color: #ffffff;
+    // --project-nav-color: rgba(0, 117, 93);
+    // --project-logo-color: rgba(0, 117, 93);
+    // --project-text-color: rgba(0, 117, 93);
+    // --project-hover-color: transparent;
+    // --project-text-stroke-color: rgba(0, 117, 93);
 
 }
 
@@ -90,13 +99,14 @@ html {
 
 body {
     animation: 1s ease-out 0s 1 FadeIn;
-    background-color: var(--home-bg-color);
-    color: var(--home-text-color);
+    background-color: var(--bg-color);
+    // background-color: var(--home-bg-color);
+    color: var(--text-color);
 }
 
 a {
     text-decoration: none;
-    color: var(--home-bg-color);
+    color: var(--bg-color);
     cursor: url('/cursor/gallery-cursor.png'), url('/cursor/gallery-cursor.svg'), url('/cursor/gallery-cursor.cur'), default;
 }
 
@@ -357,7 +367,7 @@ a:active {
 }
 
 .logo {
-    color: var(--home-text-color);
+    color: var(--logo-color);
     cursor: url('/cursor/gallery-cursor.png'), url('/cursor/gallery-cursor.svg'), url('/cursor/gallery-cursor.cur'), default;
     letter-spacing: -2px;
     font-family: 'Canopee', sans-serif;
@@ -381,7 +391,7 @@ a:active {
 
 .navbar a {
     letter-spacing: -1px;
-    color: var(--home-text-color);
+    color: var(--text-color);
     margin-left: .4rem;
     /* font-family: 'LEMON MILK Pro FTR', sans-serif; */
     font-family: 'Canopee', sans-serif;
@@ -448,13 +458,13 @@ section {
 
 .styled-textarea {
     // outline: solid 0.3px var(--home-logo-color);
-    border: solid 0.3px var(--home-logo-color);
+    border: solid 0.3px var(--logo-color);
     box-sizing: border-box; /* מבטיח שהרוחב יכלול גם את הריפוד והגבול */
 
     padding: 0.4rem 0.3rem;
     padding-bottom: 0;
     background-color: transparent;
-    color: var(--home-text-color);
+    color: var(--text-color);
     /* Text color */
     min-width: 100%;
     height: 100%;
@@ -467,7 +477,7 @@ section {
 }
 
 .styled-textarea::-webkit-scrollbar-thumb {
-    background-color: var(--home-text-color);
+    background-color: var(--text-color);
     border-radius: 10px;
 }
 
@@ -483,9 +493,9 @@ section {
 
 .save-btn, .cancel-btn {
     font-weight: 600;
-    background-color: var(--home-logo-color);
-    color: var(--home-bg-color);
-    border: solid 0.3px var(--home-logo-color);
+    background-color: var(--logo-color);
+    color: var(--bg-color);
+    border: solid 0.3px var(--logo-color);
     border-radius: 3px;
     padding: 0.2rem 0.4rem;
     cursor: pointer;
@@ -496,14 +506,14 @@ section {
 .save-btn:hover {
     background-color: transparent;
     /* Change background on hover */
-    color: var(--home-text-color);
+    color: var(--text-color);
     /* Change text color on hover */
 }
 
 
 
 .cancel-btn{
-    color: var(--home-text-color);
+    color: var(--text-color);
     background-color: transparent;
     transition: background-color 0.3s ease; /* אנימציה על שינוי צבע */
 }
@@ -547,7 +557,7 @@ section {
     height: calc(100% + 2px);
     opacity: 0;
     transition: .5s;
-    background-color: var(--home-nav-color);
+    background-color: var(--nav-color);
     object-fit: cover;
     display: flex;
 }
@@ -688,7 +698,7 @@ section {
 }
 
 .projectName {
-    color: var(--project-text-color);
+    color: var(--text-color);
     // letter-spacing: 0.2rem;
     /* font-family: 'LEMON MILK Pro FTR', sans-serif; */
     font-family: "Outfit", sans-serif;
@@ -759,7 +769,7 @@ section {
     }
 
     .logo {
-        color: var(--home-text-color);
+        color: var(--text-color);
         letter-spacing: -2px;
         font-family: 'Canopee', sans-serif;
         line-height: 0.75;
@@ -971,7 +981,7 @@ section {
     }
 
     .wrapper ul li a {
-        color: var(--home-bg-color);
+        color: var(--bg-color);
         -webkit-text-stroke: 0.5px;
         font-family: 'Canopee', sans-serif;
         text-decoration: none;
@@ -1001,7 +1011,7 @@ section {
     .wrapper ul li a:active,
     .wrapper ul li a:focus {
         color: transparent;
-        -webkit-text-stroke: 0.7px var(--home-bg-color);
+        -webkit-text-stroke: 0.7px var(--bg-color);
     }
 
     input[type="checkbox"] {

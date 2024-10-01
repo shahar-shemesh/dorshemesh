@@ -1,4 +1,21 @@
 <section class="home-gallery">
+
+
+
+    <% if (isAuthenticated && editing) { %>
+        <a href="/new-project">
+            <div class="gallery-item">
+                <div class="gallery-img">
+                    <img src="https://ik.imagekit.io/shahar/new-project.png" alt="upload a new project" class="image">
+                    <div class="overlay">
+                        <div class="gallery-img-text">Upload a new project</div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    <% } %>
+    
+
     <!-- projects.slice().reverse().forEach()   for reverse list projects -->
     <% projects.forEach(project => { %>
         <a href= <%= toKebabCase(project.projectName) %>>
@@ -12,4 +29,5 @@
             </div>
         </a>
     <% }) %>
+    
 </section>

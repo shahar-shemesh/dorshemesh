@@ -122,8 +122,19 @@ exports.postEditPageContent = async (req, res, next) => {
 };
 
 
+exports.postEditProject = async (req, res, next) => {
+    const currentPage = req.body.page;
+    const updatedContent = req.body.content;
 
-
+    const page = await Page.findOne({ pageName: currentPage });
+    try {
+        page.pageContent = updatedContent;
+        await page.save();
+        res.redirect('/' + currentPage);
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 
 

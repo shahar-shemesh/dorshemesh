@@ -8,7 +8,7 @@
                 
                 
             <% } else { %>
-                <form action="/admin/edit-content" method="POST">
+                <form action="/admin/edit-page-content" method="POST">
                     <textarea class="styled-textarea" name="content" id="content" rows="6"><%= page.pageContent %></textarea>
                     <%- include('../../../admin/csrf-input.ejs') %>
                     <div class="save-btn-container">

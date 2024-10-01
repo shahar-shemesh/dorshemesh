@@ -24,8 +24,10 @@ router.get('/signup', isAuth, adminController.getSignup);
 router.post('/signup', isAuth, adminController.postSignup);
 
 
+
 // /admin/logout => POST
 router.post('/logout', isAuth, adminController.postLogout);
+
 
 
 // /admin/mode => GET
@@ -33,8 +35,13 @@ router.get('/mode', isAuth, adminController.getMode);
 
 
 
-// /admin/edit-content => POST
-router.post('/edit-content', isAuth, adminController.postEditPageContent);
+// /admin/edit-page-content => POST
+router.post('/edit-page-content', isAuth, adminController.postEditPageContent);
+
+
+
+// /admin/edit-project => POST
+router.post('/edit-project', isAuth, adminController.postEditProject);
 
 
 
