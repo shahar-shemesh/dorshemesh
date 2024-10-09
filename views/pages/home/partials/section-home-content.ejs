@@ -16,7 +16,7 @@
                         <button id="cancel-btn" class="cancel-btn">Cancel</button>
                     </div>
                     <input type="hidden" value="<%= page.pageName %>" name="page">
-                    <input type="hidden" value="<%= page.pageContent %>" id="previousPageContent" name="previousPageContent">
+                    <input type="hidden" value="<%= JSON.stringify(page.pageContent) %>" id="previousContent" name="previousContent">
                 </form>
                     
             <% } %>

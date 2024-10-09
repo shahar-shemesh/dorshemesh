@@ -1,14 +1,52 @@
 <section class="contact-content">
 
-    <div class="platforms">
-        <% page.pageContent.forEach(function(item){ %>
-            <a href="<%= item.link %>" target="_blank">
-                <h3>
-                    <%= item.platform %>
-                </h3>
-            </a>
-            <% }) %>
-    </div>
+
+
+    <% if (!isAuthenticated || !editing) { %>
+        <div class="platforms">
+            <% page.pageContent.forEach(function(item){ %>
+                <a href="<%= item.link %>" target="_blank">
+                    <h3 class="platform-type">
+                        <%= item.platform %>
+                    </h3>
+                </a>
+                <% }) %>
+        </div>
+
+
+
+        <% } else { %>
+
+
+            <div class="platforms">
+
+                    <form action="/admin/edit-page-content" method="POST">
+                        <% page.pageContent.forEach(function(item){ %>
+                            <div class="platform-edit" key="<%= item.link %>">
+                                <input class="platform-type" name="platform" value="<%= item.platform %>">
+                                <input class="platform-link" name="link" value="<%= item.link %>">
+                            </div>
+
+                            <% }) %>
+        
+        
+                        <div class="save-btn-container">
+                            <button class="save-btn" type="submit">Save</button>
+                            <button id="cancel-btn" class="cancel-btn">Cancel</button>
+                        </div>
+        
+        
+                        <%- include('../../../admin/csrf-input.ejs') %>
+                        <input type="hidden" value="<%= page.pageName %>" name="page">
+                        <input type="hidden" value="<%= JSON.stringify(page.pageContent) %>" id="previousContent" name="previousContent">
+
+                    </form>
+
+            </div>
+
+
+            <% } %>
+
 
 
 </section>

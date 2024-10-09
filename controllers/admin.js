@@ -37,7 +37,7 @@ exports.postLogin = async (req, res, next) => {
         const doMatch = await bcrypt.compare(password, user.password);
         if (doMatch) {
             req.session.isLoggedIn = true;
-            req.session.editing = false;
+            req.session.editing = true;
             req.session.user = user;
             await req.session.save();
             return res.redirect('/');
@@ -54,7 +54,7 @@ exports.postLogin = async (req, res, next) => {
 
 exports.getMode = async (req, res, next) => {
     const editing = req.query.editing;
-    
+
     req.session.editing = await (editing?.toLowerCase?.() === 'true');
 
     return res.redirect(req.get('Referer') || '/');
@@ -105,11 +105,43 @@ exports.postLogout = (req, res, next) => {
 };
 
 
-//document.getElementById('home-content').innerText
 
 exports.postEditPageContent = async (req, res, next) => {
+    // const currentPage = req.body.page;
+    // const updatedContent = req.body.content;
+
+    // const page = await Page.findOne({ pageName: currentPage });
+    // try {
+    //     page.pageContent = updatedContent;
+    //     await page.save();
+    //     res.redirect('/' + currentPage);
+    // } catch (error) {
+    //     console.log(error);
+    // }
+
     const currentPage = req.body.page;
-    const updatedContent = req.body.content;
+    var updatedContent;
+
+    switch (currentPage) {
+        case 'home':
+            updatedContent = req.body.content;
+            break;
+
+        case 'contact':
+            const platforms = req.body.platform; // Array of platform names
+            const links = req.body.link; // Array of platform links
+            updatedContent = platforms.map((platform, index) => {
+                return {
+                    platform: platform,
+                    link: links[index]
+                };
+            });
+            break;
+
+        default:
+            break;
+    }
+
 
     const page = await Page.findOne({ pageName: currentPage });
     try {
@@ -123,14 +155,19 @@ exports.postEditPageContent = async (req, res, next) => {
 
 
 exports.postEditProject = async (req, res, next) => {
-    const currentPage = req.body.page;
-    const updatedContent = req.body.content;
+    const projectId = JSON.parse(req.body.projectId);
+    const updatedContent = {
+        projectName: req.body.projectName,
+        projectDesc: req.body.projectDesc
+    };
 
-    const page = await Page.findOne({ pageName: currentPage });
+    const project = await Project.findById(projectId);
     try {
-        page.pageContent = updatedContent;
-        await page.save();
-        res.redirect('/' + currentPage);
+        project.projectName = updatedContent.projectName;
+        project.projectDesc = updatedContent.projectDesc;
+        await project.save();
+        const newProjectPath = portfolioController.toKebabCase(updatedContent.projectName);
+        res.redirect('/' + newProjectPath);
     } catch (error) {
         console.log(error);
     }
@@ -138,24 +175,34 @@ exports.postEditProject = async (req, res, next) => {
 
 
 
+exports.getAddNewProject = (req, res, next) => {
+    res.render('base', {
+        page: { pageName: "project" },
+        content: 'admin/add-project/index',
+        pageTitle: 'Add a New Project',
+        path: '/admin/new-project',
+    });
+};
 
 
+exports.postAddNewProject = async (req, res, next) => {
+    const { projectName, projectDesc, mainImg, images } = req.body;
 
+    try {
+        const projectExist = await Project.findOne({ projectName: projectName });
+        if (projectExist) {
+            return res.redirect('/admin');
+        }
+        const project = new Project({
+            projectName: projectName,
+            projectDesc: projectDesc,
+            mainImg: mainImg,
+            images: [...images]
+        });
+        await project.save();
+        res.redirect('/');
 
-// exports.getAdminDashboard = (req, res, next) => {
-//     // שמירה על הלוגיקה והדאטה המקוריים
-//     portfolioController.getIndex(req, {
-//       ...res, // מפעילים את אותו response
-//       render: (view, options) => {
-//         // החלפה של ה-view
-//         res.render('base', {
-//           ...options, // שמירה על כל שאר האפשרויות המקוריות
-//           content: 'pages/home/index',
-//           pageTitle: 'Admin - Home',
-//           path: '/admin'
-//         });
-//       },
-//     }, next);
-//   };
-
-
+    } catch (error) {
+        console.log(error)
+    }
+};

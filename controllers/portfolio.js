@@ -7,8 +7,8 @@ const Page = require('../models/page');
 /* ------------------------------------------------------- */
 
 
-// ↓ toKebabCase == ↓ (arrow function)
-const toKebabCase = str => _.kebabCase(str);
+// toKebabCase
+exports.toKebabCase = (str) => _.kebabCase(str);
 
 
 exports.getIndex = async (req, res) => {
@@ -19,7 +19,7 @@ exports.getIndex = async (req, res) => {
             content: 'pages/home/index',
             page: indexPage,
             projects: await Project.find(),
-            toKebabCase: toKebabCase,
+            toKebabCase: this.toKebabCase,
         })
     } else {
         res.redirect('/');

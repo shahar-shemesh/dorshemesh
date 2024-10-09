@@ -1,12 +1,11 @@
 <section class="home-gallery">
 
 
-
     <% if (isAuthenticated && editing) { %>
-        <a href="/new-project">
+        <a href="/admin/new-project">
             <div class="gallery-item">
                 <div class="gallery-img">
-                    <img src="https://ik.imagekit.io/shahar/new-project.png" alt="upload a new project" class="image">
+                    <img src="https://ik.imagekit.io/shahar/new-project.png" alt="upload a new project" class="add-project">
                     <div class="overlay">
                         <div class="gallery-img-text">Upload a new project</div>
                     </div>
@@ -14,6 +13,7 @@
             </div>
         </a>
     <% } %>
+    
     
 
     <!-- projects.slice().reverse().forEach()   for reverse list projects -->

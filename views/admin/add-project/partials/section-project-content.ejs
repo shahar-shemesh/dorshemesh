@@ -1,0 +1,66 @@
+<section class="project-content">
+
+    <form action="/admin/add-new-project" method="POST">
+
+        <input class="projectName projectNameEdit" placeholder="Project name" name="projectName" id="projectName">
+
+        <textarea class="styled-textarea" placeholder="Project description" name="projectDesc" id="projectDesc"
+            rows="6"></textarea>
+
+
+        <div class="save-btn-container">
+            <button class="save-btn" type="submit">Save</button>
+        </div>
+
+
+        <button class="save-btn" id="addLinkBtn">Add photo</button>
+        <div id="linksDiv">
+
+            <div class="link-container">
+                <label for="mainImg">Main project image: </label>
+                <input type="url" class="newImageUrl" name="mainImg" placeholder="Enter .jpg, .JPG, .png or .PNG URL"
+                    pattern=".*\.(jpg|JPG|png|PNG)$" title="Please enter a valid .jpg, .JPG, .png or .PNG file URL"
+                    required />
+            </div>
+
+            <div class="link-container">
+                <label for="images">Image 1: </label>
+                <input type="url" class="newImageUrl" name="images" placeholder="Enter .jpg, .JPG, .png or .PNG URL"
+                    pattern=".*\.(jpg|JPG|png|PNG)$" title="Please enter a valid .jpg, .JPG, .png or .PNG file URL"
+                    required />
+            </div>
+        </div>
+
+
+        <%- include('../../csrf-input.ejs') %>
+    </form>
+
+
+</section>
+
+
+<script>
+    let linkCount = 1; // Initial link count
+
+    // Function to add a new input field for a new link
+    document.getElementById('addLinkBtn').addEventListener('click', function (e) {
+        e.preventDefault();
+        linkCount++;
+
+        const newElement = `
+                        <div class="link-container">
+                        <label for="images">Image ${linkCount}: </label>
+                        <input type="url" class="newImageUrl" name="images" placeholder="Enter .jpg, .JPG, .png or .PNG URL"
+                            pattern=".*\.(jpg|JPG|png|PNG)$" title="Please enter a valid .jpg, .JPG, .png or .PNG file URL" required />
+                    </div>`;
+
+        // Insert the new input element before the button
+        const linksDiv = document.getElementById('linksDiv');
+        // Find the last added .link-container element
+        const lastLinkContainer = document.querySelector('.link-container:last-of-type');
+
+        // Insert the new input element after the newest input
+        lastLinkContainer.insertAdjacentHTML('afterend', newElement);
+
+    });
+</script>

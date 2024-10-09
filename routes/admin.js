@@ -44,6 +44,14 @@ router.post('/edit-page-content', isAuth, adminController.postEditPageContent);
 router.post('/edit-project', isAuth, adminController.postEditProject);
 
 
+// /admin/new-project => GET
+router.get('/new-project', isAuth, adminController.getAddNewProject);
+
+
+// /admin/add-new-project => POST
+router.post('/add-new-project', isAuth, adminController.postAddNewProject);
+
+
 
 
 

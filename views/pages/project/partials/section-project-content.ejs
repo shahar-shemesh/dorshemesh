@@ -1,11 +1,6 @@
 <section class="project-content">
 
 
-
-
-
-
-
     <% if (!isAuthenticated || !editing) { %>
         <h1 class="projectName">
             <%= project.projectName %>
@@ -20,11 +15,10 @@
     <% } else { %>
         <form action="/admin/edit-project" method="POST">
             
-            <input class="projectName" name="projectName" id="projectName" value="<%= project.projectName %>">
+            <input class="projectName projectNameEdit" name="projectName" id="projectName" value="<%= project.projectName %>">
             
-            <textarea class="projectDesc" name="projectDesc" id="projectDesc" rows="6"><%= project.projectDesc %></textarea>
+            <textarea class="styled-textarea" name="projectDesc" id="projectDesc" rows="6"><%= project.projectDesc %></textarea>
 
-            
             
             <div class="save-btn-container">
                 <button class="save-btn" type="submit">Save</button>
@@ -33,19 +27,15 @@
             
             
             <%- include('../../../admin/csrf-input.ejs') %>
-            <input type="hidden" value="<%= project.projectName %>" name="projectName">
-            <input type="hidden" value="<%= project.projectDesc %>" id="previousContent" name="previousContent">
+            <input type="hidden" value="<%= page.pageName %>" name="page">
+            <input type="hidden" value="<%= JSON.stringify(project._id) %>" name="projectId">
+            <input type="hidden" value="<%= JSON.stringify(project) %>" id="previousContent" name="previousContent">
+
+
+            
         </form>
             
     <% } %>
-
-
-
-
-
-
-
-
 
 
 </section>

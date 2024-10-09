@@ -52,6 +52,8 @@ html {
     // --home-hover-color: rgba(0, 117, 93);
     --text-stroke-color: #d7fc33;
 
+    --add-project-color: invert(89%) sepia(84%) saturate(547%) hue-rotate(12deg) brightness(101%) contrast(98%);
+
 
     // --home-bg-color: #00755d;
     // --home-nav-color: rgb(215, 252, 51);
@@ -256,88 +258,41 @@ a:active {
 
 
 /*-----------------------------------------------------------------------------------*/
-
-
-
-/******************** Admin Project page : START ********************/
-
-
-
-// .project-content {
-//     padding: 20px;
-//     margin-bottom: 40px;
-// }
-
-// .projectName {
-//     font-size: 28px;
-//     font-weight: bold;
-//     margin-bottom: 10px;
-//     width: 100%;
-//     border: 1px solid #ccc;
-//     padding: 10px;
-//     border-radius: 5px;
-// }
-
-// .projectDesc {
-//     font-size: 18px;
-//     margin-bottom: 20px;
-//     line-height: 1.5;
-//     padding: 10px;
-//     border: 1px solid #ccc;
-//     border-radius: 5px;
-// }
-
-// .project-gallery {
-//     display: flex;
-//     flex-wrap: wrap;
-//     gap: 10px;
-// }
-
-// .image-project {
-//     flex: 1 1 30%;
-//     border: 2px solid #ddd;
-//     border-radius: 5px;
-//     overflow: hidden;
-//     padding: 5px;
-//     background-color: #f9f9f9;
-// }
-
-// .image-project img {
-//     max-width: 100%;
-//     border-radius: 5px;
-// }
-
-// .image-project-edit {
-//     width: 100%;
-//     padding: 10px;
-//     border: 2px dashed #bbb;
-//     border-radius: 5px;
-//     margin-bottom: 10px;
-//     background-color: #f2f2f2;
-//     cursor: pointer;
-// }
-
-// textarea.projectName, textarea.projectDesc {
-//     width: 100%;
-//     padding: 10px;
-//     font-size: 16px;
-//     border: 2px solid #ddd;
-//     border-radius: 5px;
-//     margin-bottom: 20px;
-// }
-
-
-/******************** Admin Project page : END ********************/
-
-
 /*-----------------------------------------------------------------------------------*/
 
 
+/******************** Admin Add New Project : START ******************/
+
+.newImageUrl {
+    border: solid 0.3px var(--logo-color);
+    border-radius: 3px;
+    width: 100%;
+}
+
+.link-container {
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.link-container input[type="url"] {
+    margin-bottom: 5px;
+}
+
+.link-container label {
+    width: 50%;
+}
+
+.link-container button {
+    margin-top: 10px;
+}
+
+
+/******************** Admin Add New Project : END ********************/
 
 
 
 
-
+/*-----------------------------------------------------------------------------------*/
 
 
 
@@ -450,25 +405,28 @@ section {
     letter-spacing: 0.003rem;
     // letter-spacing: -1px;
     line-height: 1.5rem;
-    margin-top: -.7rem;
+    // margin-top: -.7rem;
     -webkit-text-stroke: 0.03rem;
     font-family: 'LEMON-MILK-UltraLight', sans-serif;
+    
 }
 
 
 .styled-textarea {
     // outline: solid 0.3px var(--home-logo-color);
     border: solid 0.3px var(--logo-color);
-    box-sizing: border-box; /* מבטיח שהרוחב יכלול גם את הריפוד והגבול */
+    border-radius: 3px;
+    box-sizing: border-box;
+    /* מבטיח שהרוחב יכלול גם את הריפוד והגבול */
 
-    padding: 0.4rem 0.3rem;
+    padding: 0 0.3rem;
     padding-bottom: 0;
     background-color: transparent;
     color: var(--text-color);
     /* Text color */
     min-width: 100%;
     height: 100%;
-    border-radius: 3px;
+    
 }
 
 /* Custom scrollbar for Chrome, Edge, and Safari */
@@ -486,13 +444,18 @@ section {
     border-radius: 3px;
     margin-top: 0;
     margin-bottom: 0.6rem;
-    width: 100%; /* מבטיח שה-container יהיה ברוחב מלא */
-    display: flex; /* יישור הכפתור בתוך ה-container */
-    justify-content: flex-start; /* הכפתור מיושר לשמאל */
+    width: 100%;
+    /* מבטיח שה-container יהיה ברוחב מלא */
+    display: flex;
+    /* יישור הכפתור בתוך ה-container */
+    justify-content: flex-start;
+    /* הכפתור מיושר לשמאל */
 }
 
-.save-btn, .cancel-btn {
+.save-btn,
+.cancel-btn {
     font-weight: 600;
+    -webkit-text-stroke: 0;
     background-color: var(--logo-color);
     color: var(--bg-color);
     border: solid 0.3px var(--logo-color);
@@ -512,19 +475,27 @@ section {
 
 
 
-.cancel-btn{
+.cancel-btn {
     color: var(--text-color);
     background-color: transparent;
-    transition: background-color 0.3s ease; /* אנימציה על שינוי צבע */
+    transition: background-color 0.3s ease;
+    /* אנימציה על שינוי צבע */
 }
 
 .cancel-btn:hover {
-    background-color: #d32f2f; /* צבע כהה יותר ב-hover */
+    background-color: #d32f2f;
+    /* צבע כהה יותר ב-hover */
 }
 
 .home-content h1 {
     margin-bottom: .7rem;
 }
+
+
+.add-project {
+    filter: var(--add-project-color);
+}
+
 
 /******************** Home content : END ********************/
 
@@ -648,27 +619,66 @@ section {
 
 .contact-content {
     line-height: 4.2rem;
-    display: flex;
+    /* display: flex; */
+    /* width: 100%; */
     padding: 0 4%;
 }
+
 
 .platforms {
     -webkit-text-stroke: 0.1rem;
     letter-spacing: 1px;
     line-height: 4rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    /* width: 100%; */
 }
 
 
 .contact-content * {
-    font-weight: 300;
+}
+
+
+.contact-content form {
+    /* position: relative; */
+    display: flex;
+    flex-direction: column;
+    /* width: fit-content; */
+    /* justify-content: space-evenly; */
+    /* gap: 10px; */
+}
+
+.contact-content form input {
+    background-color: transparent;
+}
+
+.platform-edit {
+    display: flex;
+    border-bottom: solid 0.3px var(--logo-color);
+    /* box-sizing: border-box; */
+    background-color: transparent;
+
+    &:nth-last-of-type(2)
+    {
+        border-bottom: none;
+        margin-bottom: 2rem;
+    } 
+}
+
+
+.platform-type {
     font-size: 2.6rem;
     color: #fff;
 }
 
+.platform-link {
+
+    color: #000088;
+    width: 100%;
+    font-size: 1.3rem;
+    text-decoration: underline;
+}
 
 .circle-contact {
     position: fixed;
@@ -706,6 +716,13 @@ section {
     font-weight: 400;
 }
 
+.projectNameEdit {
+    border: solid 0.3px var(--logo-color);
+    border-radius: 3px;
+    border-bottom: none;
+    width: 100%;
+}
+
 .projectDesc {
     font-weight: 200;
     letter-spacing: 1px;
@@ -730,6 +747,18 @@ section {
     vertical-align: middle;
     width: 100%;
     height: 100%;
+}
+
+.project-images-container {
+    padding: 3px;
+    display: flex;
+    flex-direction: column;
+    height: auto !important;
+    position: relative;
+
+    border: solid 2px #676767;
+    border-radius: 3px;
+    margin-bottom: 1.5rem;
 }
 
 .footer {
@@ -768,8 +797,30 @@ section {
         display: none;
     }
 
+
+    .admin-nav ul li,
+    .admin-nav ul li form {
+        margin: 0;
+    }
+
+
+    .admin-nav ul li a,
+    .admin-nav ul li form button {
+        font-size: 0.9rem;
+    }
+    
+
+    .admin-nav {
+        position: relative;
+        width: 100vw;
+        padding: 2px;
+        right: 0.8rem;
+    }
+
+
     .logo {
-        color: var(--text-color);
+        // color: var(--text-color);
+        color: var(--logo-color);
         letter-spacing: -2px;
         font-family: 'Canopee', sans-serif;
         line-height: 0.75;
@@ -797,6 +848,8 @@ section {
     }
 
     .home-content {
+        display: block;
+
         width: auto;
     }
 
@@ -957,7 +1010,8 @@ section {
         font-family: 'LEMON-MILK-UltraLight', sans-serif;
         -webkit-text-stroke: 0.2rem;
         font-size: 2.5rem;
-        color: #d7fc33;
+        // color: #d7fc33;
+        color: var(--logo-color);
         cursor: pointer;
         /* background: linear-gradient(375deg, #1cc7d0, #2ede98); */
         transition: all 0.3s ease-in-out;
@@ -981,7 +1035,8 @@ section {
     }
 
     .wrapper ul li a {
-        color: var(--bg-color);
+        // color: var(--bg-color);
+        color: #00755d;
         -webkit-text-stroke: 0.5px;
         font-family: 'Canopee', sans-serif;
         text-decoration: none;

@@ -86,58 +86,61 @@
                     const currentPage = "<%= page.pageName %>";
 
 
+                    function setColors(properties) {
+                        const root = document.documentElement;
+
+                        Object.entries(properties).map(([property, value]) => {
+                            root.style.setProperty(property, value);
+                        });
+                    }
 
 
                     /***************************************/
 
 
-                    // גישה ל-<html> כדי לשנות את המשתנים
-                    const root = document.documentElement;
-
-                    // קריאת הערך הנוכחי של המשתנה
-                    const bgColor = getComputedStyle(root).getPropertyValue('--bg-color');
-                    const navColor = getComputedStyle(root).getPropertyValue('--nav-color');
-                    const logoColor = getComputedStyle(root).getPropertyValue('--logo-color');
-                    const textColor = getComputedStyle(root).getPropertyValue('--text-color');
-                    const hoverColor = getComputedStyle(root).getPropertyValue('--hover-color');
-                    const textStrokeColor = getComputedStyle(root).getPropertyValue('--text-stroke-color');
-
-
                     switch (currentPage) {
                         case 'home':
-                            root.style.setProperty('--bg-color', '#00755d');
-                            root.style.setProperty('--nav-color', 'rgb(215, 252, 51)');
-                            root.style.setProperty('--logo-color', 'rgb(215, 252, 51)');
-                            root.style.setProperty('--text-color', '#ffffff');
-                            root.style.setProperty('--hover-color', 'transparent');
-                            root.style.setProperty('--text-stroke-color', '#d7fc33');
+                            setColors({
+                                '--bg-color': '#00755d',
+                                '--nav-color': 'rgb(215, 252, 51)',
+                                '--logo-color': 'rgb(215, 252, 51)',
+                                '--text-color': '#ffffff',
+                                '--hover-color': 'transparent',
+                                '--text-stroke-color': '#d7fc33'
+                            });
                             break;
 
                         case 'about':
-                            root.style.setProperty('--bg-color', '#ffffff');
-                            root.style.setProperty('--nav-color', 'rgba(0, 117, 93)');
-                            root.style.setProperty('--logo-color', 'rgba(0, 117, 93)');
-                            root.style.setProperty('--text-color', 'rgba(0, 117, 93)');
-                            root.style.setProperty('--hover-color', 'transparent');
-                            root.style.setProperty('--text-stroke-color', 'rgba(0, 117, 93)');
+                            setColors({
+                                '--bg-color': '#ffffff',
+                                '--nav-color': 'rgba(0, 117, 93)',
+                                '--logo-color': 'rgba(0, 117, 93)',
+                                '--text-color': 'rgba(0, 117, 93)',
+                                '--hover-color': 'transparent',
+                                '--text-stroke-color': 'rgba(0, 117, 93)'
+                            });
                             break;
 
                         case 'contact':
-                            root.style.setProperty('--bg-color', 'rgba(0, 117, 93)');
-                            root.style.setProperty('--nav-color', '#d7fc33');
-                            root.style.setProperty('--logo-color', 'rgb(215, 252, 51)');
-                            root.style.setProperty('--text-color', '#ffffff');
-                            root.style.setProperty('--hover-color', 'transparent');
-                            root.style.setProperty('--text-stroke-color', 'rgb(215, 252, 51)');
+                            setColors({
+                                '--bg-color': 'rgba(0, 117, 93)',
+                                '--nav-color': '#d7fc33',
+                                '--logo-color': 'rgb(215, 252, 51)',
+                                '--text-color': '#ffffff',
+                                '--hover-color': 'transparent',
+                                '--text-stroke-color': 'rgb(215, 252, 51)'
+                            });
                             break;
 
                         case 'project':
-                            root.style.setProperty('--bg-color', '#ffffff');
-                            root.style.setProperty('--nav-color', 'rgba(0, 117, 93)');
-                            root.style.setProperty('--logo-color', 'rgba(0, 117, 93)');
-                            root.style.setProperty('--text-color', 'rgba(0, 117, 93)');
-                            root.style.setProperty('--hover-color', 'transparent');
-                            root.style.setProperty('--text-stroke-color', 'rgba(0, 117, 93)');
+                            setColors({
+                                '--bg-color': '#ffffff',
+                                '--nav-color': 'rgba(0, 117, 93)',
+                                '--logo-color': 'rgba(0, 117, 93)',
+                                '--text-color': 'rgba(0, 117, 93)',
+                                '--hover-color': 'transparent',
+                                '--text-stroke-color': 'rgba(0, 117, 93)'
+                            });
                             break;
 
                         default:
@@ -204,81 +207,6 @@
 
 
                     /***************************************/
-
-
-
-
-
-
-
-                    // // define background color
-                    // // document.querySelector("body").style.backgroundColor = 'var(--' + currentPage + '-bg-color)';
-                    // document.querySelector("body").style.backgroundColor = 'var(--bg-color)';
-
-                    // // define text color
-                    // document.querySelector("body").style.color = 'var(--' + currentPage + '-text-color)';
-
-                    // // define '.logo' color
-                    // document.querySelector(".logo").style.color = 'var(--' + currentPage + '-logo-color)';
-
-                    // // define mobile-nav color
-                    // document.querySelector(".menu-btn").style.color = 'var(--' + currentPage + '-nav-color)';
-
-                    // if (currentPage != "project") {
-                    //     // add active class to relevant 'navbar a' item
-                    //     document.querySelector("#" + currentPage).classList.add("active");
-                    //     // define '.navbar a:active' color
-                    //     document.querySelector("#" + currentPage).style.color = 'var(--' + currentPage + '-hover-color)';
-                    // }
-
-                    // // define shadow location
-                    // switch (currentPage) {
-                    //     case "contact":
-                    //         document.querySelector("#shadow").style.top = "-5%";
-                    //         break;
-                    //     case "about":
-                    //         document.querySelector("#shadow").style.right = "45%";
-                    //         document.querySelector("#shadow").style.top = "-50%";
-                    //         break;
-                    //     case "home":
-                    //         document.querySelector("#shadow").style.display = "none";
-                    //         break;
-                    //     default:
-                    //         document.querySelector("#shadow").style.left = "40%";
-                    //         document.querySelector("#shadow").style.bottom = "-90%";
-                    // }
-
-
-                    // // define '.navbar a, .navbar a:hover' color
-                    // document.querySelectorAll(".navbar a").forEach((a) => {
-                    //     a.style.webkitTextStrokeColor = 'var(--' + currentPage + '-text-stroke-color)';
-
-                    //     if (a.className != 'active') {
-                    //         a.style.color = 'var(--' + currentPage + '-nav-color)';
-
-                    //         a.addEventListener('mouseover', function (event) {
-                    //             event.target.style.color = 'var(--' + currentPage + '-hover-color)';
-                    //         });
-
-                    //         a.addEventListener('mouseout', function (event) {
-                    //             event.target.style.color = 'var(--' + currentPage + '-nav-color)';
-                    //         });
-                    //     }
-                    // });
-
-
-                    // // mobile-nav
-                    // document.querySelector("#active").addEventListener('click', (event) => {
-                    //     if (event.target.checked) {
-                    //         document.querySelector('.menu-btn').style.position = 'fixed';
-                    //         document.querySelector(".menu-btn").style.color = '#00755d';
-                    //         document.querySelector('.menu-btn').innerHTML = 'X';
-                    //     } else {
-                    //         document.querySelector(".menu-btn").style.color = 'var(--' + currentPage + '-nav-color)';
-                    //         document.querySelector('.menu-btn').style.position = 'absolute';
-                    //         document.querySelector('.menu-btn').innerHTML = '///';
-                    //     };
-                    // });
 
                     // zoom handling
                     document.addEventListener('touchmove', function (event) {

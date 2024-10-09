@@ -1,11 +1,40 @@
 <section class="project-gallery">
 
-    <% project.images.forEach(image=> { %>
 
-        <div class="image-project">
-            <img src="<%= image %>" />
-        </div>
 
-        <% }); %>
+        <% if (!isAuthenticated || !editing) { %>
+            <% project.images.forEach((image)=> { %>
+                <div class="image-project">
+                    <img src="<%= image %>" />
+                </div>
+            <% }); %>
+
+
+
+
+        <% } else { %>
+
+            <% project.images.forEach((image, index)=> { %>
+                <div class="project-images-container">
+                    <div class="image-project">
+                        <img src="<%= image %>" />
+    
+                    </div>
+
+
+                    <label for="images">Image <%= index %>: </label>
+                    <input type="url" class="newImageUrl" name="images" value="<%= image %>" />
+                </div>
+
+
+
+
+            <% }); %>
+
+            
+
+        <% } %>
+
+    
 
 </section>
