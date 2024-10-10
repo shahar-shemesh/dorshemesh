@@ -18,7 +18,7 @@ exports.getIndex = async (req, res) => {
         res.render('base', {
             content: 'pages/home/index',
             page: indexPage,
-            projects: await Project.find(),
+            projects: await Project.find().sort({ order: 1 }),
             toKebabCase: this.toKebabCase,
         })
     } else {

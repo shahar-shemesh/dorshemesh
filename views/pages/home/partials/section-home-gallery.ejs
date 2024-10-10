@@ -2,7 +2,7 @@
 
 
     <% if (isAuthenticated && editing) { %>
-        <a href="/admin/new-project">
+        <!-- <a href="/admin/new-project">
             <div class="gallery-item">
                 <div class="gallery-img">
                     <img src="https://ik.imagekit.io/shahar/new-project.png" alt="upload a new project" class="add-project">
@@ -11,23 +11,95 @@
                     </div>
                 </div>
             </div>
-        </a>
-    <% } %>
-    
-    
+        </a> -->
 
-    <!-- projects.slice().reverse().forEach()   for reverse list projects -->
-    <% projects.forEach(project => { %>
-        <a href= <%= toKebabCase(project.projectName) %>>
-            <div class="gallery-item">
-                <div class="gallery-img">
-                    <img src= <%= project.mainImg %> alt= <%= project.projectName %> class="image">
-                    <div class="overlay">
-                        <div class="gallery-img-text"><%= project.projectName %></div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    <% }) %>
-    
+        <form id="order-form" action="/admin/reorder-gallery" method="POST">
+            <%- include('../../../admin/csrf-input.ejs') %>
+                <input type="hidden" name="order" id="order-input">
+                <button id="save-order" type="submit">Save Order</button>
+        </form>
+
+        <ul id="gallery" class="gallery">
+            <% projects.forEach((project)=> { %>
+                <li class="gallery-item" data-index="<%= project._id.toString() %>">
+                    <a href="<%= toKebabCase(project.projectName) %>">
+                        <div class="gallery-img">
+                            <img src="<%= project.mainImg %>" alt="<%= project.projectName %>" class="image">
+                            <div class="overlay">
+                                <div class="gallery-img-text">
+                                    <%= project.projectName %>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            <% }) %>
+        </ul>
+
+
+
+        <% } else { %>
+
+            <ul id="gallery" class="gallery">
+                <% projects.forEach(project=> { %>
+                    <a href=<%=toKebabCase(project.projectName) %>>
+                        <div class="gallery-item">
+                            <div class="gallery-img">
+                                <img src=<%=project.mainImg %> alt= <%= project.projectName %> class="image">
+                                    <div class="overlay">
+                                        <div class="gallery-img-text">
+                                            <%= project.projectName %>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </a>
+                    <% }) %>
+            </ul>
+        <% } %>
+
 </section>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const gallery = document.getElementById('gallery');
+        let newOrder = [];
+
+        // Initialize Sortable.js on the gallery element
+        new Sortable(gallery, {
+            animation: 150,  // Smooth animation duration in ms
+            ghostClass: 'ghost',  // Class to apply to the element being dragged
+            onStart: function () {
+                // Add the 'shaking' class to all items when dragging starts
+                const items = document.querySelectorAll('.gallery-item');
+                items.forEach(item => {
+                    item.classList.add('shaking');
+                });
+            },
+            onEnd: function (evt) {
+                // Remove the 'shaking' class when dragging ends
+                const items = document.querySelectorAll('.gallery-item');
+                items.forEach(item => {
+                    item.classList.remove('shaking');
+                });
+
+                // Get the new order of elements based on their `data-index` attributes
+                const children = Array.from(gallery.children);
+                newOrder = children.map(item => item.getAttribute('data-index'));
+
+                // Store the new order as a JSON string in the hidden input field
+                document.getElementById('order-input').value = JSON.stringify(newOrder);
+            }
+        });
+
+        // Handle form submission (no need for e.preventDefault() since we're submitting the form)
+        document.getElementById('save-order')?.addEventListener('click', function () {
+            if (newOrder.length === 0) {
+                alert('No changes to save.');
+                return;
+            }
+        });
+    });
+</script>

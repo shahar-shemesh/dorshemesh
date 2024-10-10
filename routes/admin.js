@@ -51,6 +51,9 @@ router.get('/new-project', isAuth, adminController.getAddNewProject);
 // /admin/add-new-project => POST
 router.post('/add-new-project', isAuth, adminController.postAddNewProject);
 
+// /admin/reorder-gallery => POST
+router.post('/reorder-gallery', isAuth, adminController.postReorderGallery);
+
 
 
 
@@ -74,3 +77,7 @@ router.post('/add-new-project', isAuth, adminController.postAddNewProject);
 // router.post('/delete-product', isAuth, adminController.postDeleteProduct);
 
 module.exports = router;
+
+
+
+

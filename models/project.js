@@ -4,7 +4,8 @@ const projectSchema = new mongoose.Schema({
     projectName: String,
     projectDesc: String,
     mainImg: String,
-    images: [String]
+    images: [String],
+    order: Number,  // Field for storing the order of the projects
 });
 
 

@@ -197,12 +197,31 @@ exports.postAddNewProject = async (req, res, next) => {
             projectName: projectName,
             projectDesc: projectDesc,
             mainImg: mainImg,
-            images: [...images]
+            images: images
         });
         await project.save();
         res.redirect('/');
 
     } catch (error) {
         console.log(error)
+    }
+};
+
+
+
+exports.postReorderGallery = async (req, res) => {
+    try {
+        const newOrder = JSON.parse(req.body.order);  // Parse the new order from the form input
+
+        // Loop through the new order array and update each project's order in the database
+        await Promise.all(newOrder.map((projectId, index) => {
+            return Project.updateOne({ _id: projectId }, { order: index });
+        }));
+
+        // Redirect or send a success message
+        res.redirect('/admin');  // Redirect to another page, or render a success page
+    } catch (err) {
+        console.error('Error updating gallery order:', err);
+        res.status(500).send('Error updating gallery order');
     }
 };

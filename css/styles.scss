@@ -408,7 +408,7 @@ section {
     // margin-top: -.7rem;
     -webkit-text-stroke: 0.03rem;
     font-family: 'LEMON-MILK-UltraLight', sans-serif;
-    
+
 }
 
 
@@ -426,7 +426,7 @@ section {
     /* Text color */
     min-width: 100%;
     height: 100%;
-    
+
 }
 
 /* Custom scrollbar for Chrome, Edge, and Safari */
@@ -504,7 +504,7 @@ section {
 /******************** Home gallery : START ********************/
 
 /* home-gallery */
-.home-gallery {
+.gallery {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
@@ -514,9 +514,11 @@ section {
     flex-basis: 49%;
     /* Adjust the value as needed */
     text-align: center;
-
+    list-style: none;
     height: 30vw;
 }
+
+
 
 .overlay {
     position: absolute;
@@ -559,6 +561,40 @@ section {
     padding-top: 1rem;
 }
 
+
+#gallery {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.dragging {
+    opacity: 0.5;
+}
+
+.over {
+    border: 2px dashed #000;
+}
+
+.ghost {
+    opacity: 0.5;
+    background-color: #f0f0f0;
+    transform: scale(1.05);
+  }
+
+  @keyframes shake {
+    0% { transform: translate(0px, 0px); }
+    25% { transform: translate(2px, 0px); }
+    50% { transform: translate(0px, 2px); }
+    75% { transform: translate(-2px, 0px); }
+    100% { transform: translate(0px, 0px); }
+  }
+  
+  .shaking {
+    margin: 1rem;
+    animation: wiggle 0.5s ease infinite;
+}
 /******************** Home gallery : END ********************/
 
 
@@ -636,8 +672,7 @@ section {
 }
 
 
-.contact-content * {
-}
+.contact-content * {}
 
 
 .contact-content form {
@@ -659,11 +694,10 @@ section {
     /* box-sizing: border-box; */
     background-color: transparent;
 
-    &:nth-last-of-type(2)
-    {
+    &:nth-last-of-type(2) {
         border-bottom: none;
         margin-bottom: 2rem;
-    } 
+    }
 }
 
 
@@ -808,7 +842,7 @@ section {
     .admin-nav ul li form button {
         font-size: 0.9rem;
     }
-    
+
 
     .admin-nav {
         position: relative;
