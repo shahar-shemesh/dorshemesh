@@ -408,7 +408,6 @@ section {
     // margin-top: -.7rem;
     -webkit-text-stroke: 0.03rem;
     font-family: 'LEMON-MILK-UltraLight', sans-serif;
-
 }
 
 
@@ -419,13 +418,14 @@ section {
     box-sizing: border-box;
     /* מבטיח שהרוחב יכלול גם את הריפוד והגבול */
 
-    padding: 0 0.3rem;
-    padding-bottom: 0;
+    padding: 0.3rem;
+    // padding-bottom: 0;
     background-color: transparent;
     color: var(--text-color);
     /* Text color */
     min-width: 100%;
-    height: 100%;
+    // height: 100%;
+    field-sizing: content;
 
 }
 
@@ -445,11 +445,7 @@ section {
     margin-top: 0;
     margin-bottom: 0.6rem;
     width: 100%;
-    /* מבטיח שה-container יהיה ברוחב מלא */
-    display: flex;
-    /* יישור הכפתור בתוך ה-container */
-    justify-content: flex-start;
-    /* הכפתור מיושר לשמאל */
+
 }
 
 .save-btn,
@@ -518,6 +514,9 @@ section {
     height: 30vw;
 }
 
+.gallery-archive-item {
+    opacity: 40%;
+}
 
 
 .overlay {
@@ -798,6 +797,47 @@ section {
 .footer {
     margin-bottom: 2rem;
 }
+
+
+/* עיצוב כפתור מחיקה */
+
+.save-order, 
+.delete-archive button {
+    padding: 10px 20px;
+    margin: 0.5rem 0;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.delete-btn {
+    background-color: #ff4d4d;
+    color: white;
+    
+}
+
+.delete-btn:hover {
+    background-color: #e60000;
+    transform: scale(1.05);
+}
+
+/* עיצוב כפתור ארכוב */
+.archive-btn {
+    background-color: #6c6c6c;
+    color: white;
+}
+
+.archive-btn:hover {
+    background-color: #2e2e2e;
+    transform: scale(1.05);
+}
+
+
 
 @media (max-width: 900px) {
 

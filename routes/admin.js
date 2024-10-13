@@ -39,7 +39,6 @@ router.get('/mode', isAuth, adminController.getMode);
 router.post('/edit-page-content', isAuth, adminController.postEditPageContent);
 
 
-
 // /admin/edit-project => POST
 router.post('/edit-project', isAuth, adminController.postEditProject);
 
@@ -51,30 +50,17 @@ router.get('/new-project', isAuth, adminController.getAddNewProject);
 // /admin/add-new-project => POST
 router.post('/add-new-project', isAuth, adminController.postAddNewProject);
 
+
+// /admin/update-project-image => POST
+router.post('/update-project-image', isAuth, adminController.postUpdateProjectImage);
+
+// /admin/delete-or-archive-project => POST
+router.post('/delete-or-archive-project', isAuth, adminController.postDeleteArchiveProject);
+
+
 // /admin/reorder-gallery => POST
 router.post('/reorder-gallery', isAuth, adminController.postReorderGallery);
 
-
-
-
-
-
-
-
-// // /admin/add-product => GET
-// router.get('/add-product', isAuth, adminController.getAddProduct);
-
-// // /admin/products => GET
-// router.get('/products', isAuth, adminController.getProducts);
-
-// // /admin/add-product => POST
-// router.post('/add-product', isAuth, adminController.postAddProduct);
-
-// router.get('/edit-product/:productId', isAuth, adminController.getEditProduct);
-
-// router.post('/edit-product', isAuth, adminController.postEditProduct);
-
-// router.post('/delete-product', isAuth, adminController.postDeleteProduct);
 
 module.exports = router;
 

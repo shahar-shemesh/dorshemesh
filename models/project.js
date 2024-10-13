@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const projectSchema = new mongoose.Schema({
+    archive: Boolean,
     projectName: String,
     projectDesc: String,
     mainImg: String,

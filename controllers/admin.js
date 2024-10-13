@@ -156,9 +156,15 @@ exports.postEditPageContent = async (req, res, next) => {
 
 exports.postEditProject = async (req, res, next) => {
     const projectId = JSON.parse(req.body.projectId);
+    // const updatedContent = {
+    //     projectName: req.body.projectName,
+    //     projectDesc: req.body.projectDesc
+    // };
     const updatedContent = {
         projectName: req.body.projectName,
-        projectDesc: req.body.projectDesc
+        projectDesc: req.body.projectDesc,
+        mainImg: req.body.mainImg,
+        images: req.body.images
     };
 
     const project = await Project.findById(projectId);
@@ -168,6 +174,23 @@ exports.postEditProject = async (req, res, next) => {
         await project.save();
         const newProjectPath = portfolioController.toKebabCase(updatedContent.projectName);
         res.redirect('/' + newProjectPath);
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+
+
+
+exports.postUpdateProjectImage = async (req, res, next) => {
+    const projectId = JSON.parse(req.body.projectId);
+    const { imageOrder, image } = req.body;
+
+    const project = await Project.findById(projectId);
+    try {
+        project.images[imageOrder] = image;
+        await project.save();
+        res.redirect('/');
     } catch (error) {
         console.log(error);
     }
@@ -207,6 +230,37 @@ exports.postAddNewProject = async (req, res, next) => {
     }
 };
 
+exports.postDeleteArchiveProject = async (req, res, next) => {
+    const projectId = JSON.parse(req.body.projectId);
+    const operation = req.body.trash;
+
+    switch (operation) {
+        case 'archive':
+            const project = await Project.findById(projectId);
+            try {
+                if (project.archive){
+                    project.archive = false;
+                } else {
+                    project.archive = true;
+                }
+                await project.save();
+                res.redirect('/');
+            } catch (error) {
+                console.log(error);
+            }
+            break;
+
+        case 'delete':
+            await Project.findByIdAndDelete(projectId);
+            res.redirect('/');
+            break;
+        default:
+            break;
+    }
+};
+
+
+
 
 
 exports.postReorderGallery = async (req, res) => {
@@ -225,3 +279,6 @@ exports.postReorderGallery = async (req, res) => {
         res.status(500).send('Error updating gallery order');
     }
 };
+
+
+

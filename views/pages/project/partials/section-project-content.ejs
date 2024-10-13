@@ -13,11 +13,19 @@
         
         
     <% } else { %>
+
+        <form class="delete-archive" action="/admin/delete-or-archive-project" method="POST">
+            <%- include('../../../admin/csrf-input.ejs') %>
+            <input type="hidden" value="<%= JSON.stringify(project._id) %>" name="projectId">
+            <button class="delete-btn" type="submit" value="delete" name="trash" onclick="return confirmDelete()">Delete Project</button>
+            <button class="archive-btn" type="submit" value="archive" name="trash"><%= project.archive ? "Unarchive" : "Archive" %> Project</button>
+        </form>
+
         <form action="/admin/edit-project" method="POST">
             
             <input class="projectName projectNameEdit" name="projectName" id="projectName" value="<%= project.projectName %>">
             
-            <textarea class="styled-textarea" name="projectDesc" id="projectDesc" rows="6"><%= project.projectDesc %></textarea>
+            <textarea class="styled-textarea projectDesc" name="projectDesc" id="projectDesc" rows="6"><%= project.projectDesc %></textarea>
 
             
             <div class="save-btn-container">
@@ -39,3 +47,10 @@
 
 
 </section>
+
+
+<script>
+    function confirmDelete() {
+        return confirm("Are you sure? This action is permanent.");
+    }
+    </script>

@@ -22,8 +22,23 @@
                     </div>
 
 
-                    <label for="images">Image <%= index %>: </label>
-                    <input type="url" class="newImageUrl" name="images" value="<%= image %>" />
+                    <form action="/admin/update-project-image" method="POST">
+
+                        <label for="images">Image <%= index %>: </label>
+                        <input type="url" class="newImageUrl" name="image" value="<%= image %>" />
+                        <label for="setMainImage">Main image: </label>
+                        <input type="checkbox" class="newImageUrl" name="setMainImage" <%= image === project.mainImg ? 'checked' : '' %> />
+
+                        <button class="save-btn" type="submit">Save</button>
+                        
+                        
+                        <%- include('../../../admin/csrf-input.ejs') %>
+                        <input type="hidden" value="<%= JSON.stringify(project._id) %>" name="projectId">
+                        <input type="hidden" value="<%= index %>" name="imageOrder">
+                        
+                    </form>
+
+
                 </div>
 
 

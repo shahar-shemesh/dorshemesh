@@ -2,26 +2,16 @@
 
 
     <% if (isAuthenticated && editing) { %>
-        <!-- <a href="/admin/new-project">
-            <div class="gallery-item">
-                <div class="gallery-img">
-                    <img src="https://ik.imagekit.io/shahar/new-project.png" alt="upload a new project" class="add-project">
-                    <div class="overlay">
-                        <div class="gallery-img-text">Upload a new project</div>
-                    </div>
-                </div>
-            </div>
-        </a> -->
 
         <form id="order-form" action="/admin/reorder-gallery" method="POST">
             <%- include('../../../admin/csrf-input.ejs') %>
                 <input type="hidden" name="order" id="order-input">
-                <button id="save-order" type="submit">Save Order</button>
+                <button class="save-btn save-order" id="save-order" type="submit">Save Order</button>
         </form>
 
         <ul id="gallery" class="gallery">
             <% projects.forEach((project)=> { %>
-                <li class="gallery-item" data-index="<%= project._id.toString() %>">
+                <li class="gallery-item <%= project.archive ? 'gallery-archive-item' : '' %>" data-index="<%= project._id.toString() %>">
                     <a href="<%= toKebabCase(project.projectName) %>">
                         <div class="gallery-img">
                             <img src="<%= project.mainImg %>" alt="<%= project.projectName %>" class="image">
@@ -42,6 +32,8 @@
 
             <ul id="gallery" class="gallery">
                 <% projects.forEach(project=> { %>
+                    <% if (project.archive) { return; } %>
+
                     <a href=<%=toKebabCase(project.projectName) %>>
                         <div class="gallery-item">
                             <div class="gallery-img">
