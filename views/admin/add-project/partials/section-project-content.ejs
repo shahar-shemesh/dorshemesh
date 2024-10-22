@@ -1,6 +1,6 @@
 <section class="project-content">
 
-    <form action="/admin/add-new-project" method="POST">
+    <form class="new-project-form" action="/admin/add-new-project" method="POST">
 
         <input class="projectName projectNameEdit" placeholder="Project name" name="projectName" id="projectName">
 
@@ -18,16 +18,17 @@
 
             <div class="link-container">
                 <label for="mainImg">Main project image: </label>
-                <input type="url" class="newImageUrl" name="mainImg" placeholder="Enter .jpg, .JPG, .png or .PNG URL"
-                    pattern=".*\.(jpg|JPG|png|PNG)$" title="Please enter a valid .jpg, .JPG, .png or .PNG file URL"
+                <input type="url" class="input-url" name="mainImg" placeholder="Enter .jpg, .JPG, .png or .PNG URL"
+                    title="Please enter a valid .jpg, .JPG, .png or .PNG file URL"
                     required />
             </div>
 
             <div class="link-container">
-                <label for="images">Image 1: </label>
-                <input type="url" class="newImageUrl" name="images" placeholder="Enter .jpg, .JPG, .png or .PNG URL"
-                    pattern=".*\.(jpg|JPG|png|PNG)$" title="Please enter a valid .jpg, .JPG, .png or .PNG file URL"
+                <label for="images">Image link: </label>
+                <input type="url" class="input-url" name="images" placeholder="Enter .jpg, .JPG, .png or .PNG URL"
+                    title="Please enter a valid .jpg, .JPG, .png or .PNG file URL"
                     required />
+
             </div>
         </div>
 
@@ -40,18 +41,20 @@
 
 
 <script>
-    let linkCount = 1; // Initial link count
 
     // Function to add a new input field for a new link
     document.getElementById('addLinkBtn').addEventListener('click', function (e) {
         e.preventDefault();
-        linkCount++;
 
         const newElement = `
                         <div class="link-container">
-                        <label for="images">Image ${linkCount}: </label>
-                        <input type="url" class="newImageUrl" name="images" placeholder="Enter .jpg, .JPG, .png or .PNG URL"
-                            pattern=".*\.(jpg|JPG|png|PNG)$" title="Please enter a valid .jpg, .JPG, .png or .PNG file URL" required />
+                        <label for="images">Image link: </label>
+                        <span class="span-url">
+                            <input type="url" class="input-url" name="images" placeholder="Enter .jpg, .JPG, .png or .PNG URL"
+                                title="Please enter a valid .jpg, .JPG, .png or .PNG file URL" required />
+                            <button class="delete-btn-circle" type="button" value="delete" name="editImageOp" onclick="deleteElement(this)"></button>
+                        </span>
+
                     </div>`;
 
         // Insert the new input element before the button
@@ -63,4 +66,10 @@
         lastLinkContainer.insertAdjacentHTML('afterend', newElement);
 
     });
+
+
+    function deleteElement(button) {
+        button.parentElement.parentElement.remove();
+    }
+    
 </script>

@@ -100,6 +100,7 @@ html {
 
 
 body {
+    margin-bottom: 2rem;
     animation: 1s ease-out 0s 1 FadeIn;
     background-color: var(--bg-color);
     // background-color: var(--home-bg-color);
@@ -263,28 +264,285 @@ a:active {
 
 /******************** Admin Add New Project : START ******************/
 
+.new-project-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.input-url {
+    font-family: 'Arial', sans-serif;
+    width: 100%;
+    padding: 0.45rem 0.7rem;
+    border: 2px solid var(--logo-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: rgba(0, 117, 94, 0.1);
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.input-url:focus {
+    border-color: #333;
+    color: #000;
+    background-color: rgba(0, 117, 94, 0.2);
+    outline: none;
+}
+
+/* Hover effect */
+.input-url:hover {
+    background-color: rgba(0, 117, 94, 0.2);
+    /* Light blue background on hover */
+    color: #000;
+}
+
+
+
 .newImageUrl {
     border: solid 0.3px var(--logo-color);
     border-radius: 3px;
     width: 100%;
+    /* height: 2rem; */
+    padding: 0.3rem;
+    font-size: 1rem;
+    font-family: 'Arial', sans-serif;
 }
+
+.span-url {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+// .delete-btn-circle {
+//     width: 1.2rem;
+//     height: 1.2rem;
+//     background-color: #ff4d4d;
+//     color: white;
+//     border-radius: 50%;
+//     text-align: center;
+//     font-size: 0.9rem;
+//     position: absolute;
+//     cursor: pointer;
+//     margin-right: 0.5rem;
+//     border: none;
+// }
+
+
+// .delete-btn-circle::before {
+//     content: 'x';
+//     position: absolute;
+//     top: -0.13rem;
+//     left: 0.38rem;
+// }
+
+/* סגנון כללי לכפתור העגול */
+.delete-btn-circle {
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: #ff4d4d;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 0.9rem;
+    position: absolute;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* מעבר חלק על צבע וגודל */
+}
+
+/* הסימן X */
+.delete-btn-circle::before {
+    content: 'x';
+    position: absolute;
+    top: -0.13rem;
+    left: 0.38rem;
+    transition: color 0.3s ease; /* מעבר חלק על צבע ה-X */
+}
+
+/* אפקט ריחוף */
+.delete-btn-circle:hover {
+    background-color: #ff1a1a; /* אדום כהה יותר בריחוף */
+    transform: scale(1.2); /* הגדלה קטנה של הכפתור בריחוף */
+}
+
+/* שינוי צבע ה-X בעת ריחוף */
+.delete-btn-circle:hover::before {
+    color: #ffffff; /* X לבן יותר בהיר */
+}
+
+/* אפקט לחיצה */
+.delete-btn-circle:active {
+    transform: scale(0.9); /* כיווץ קל בעת לחיצה */
+    background-color: #e60000; /* צבע אדום כהה יותר בלחיצה */
+}
+
+/* אפקט Pulse קטן */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.delete-btn-circle:hover {
+    animation: pulse 0.6s infinite; /* אפקט pulse בזמן ריחוף */
+}
+
 
 .link-container {
-    margin-bottom: 10px;
+    margin: 1rem 0;
     display: flex;
-}
-
-.link-container input[type="url"] {
-    margin-bottom: 5px;
+    align-items: baseline;
 }
 
 .link-container label {
-    width: 50%;
+    // width: 50%;
+    flex-basis: 40%;
 }
 
-.link-container button {
-    margin-top: 10px;
+
+.link-container:first-child {
+    & label {
+        font-weight: bold;
+    }
 }
+
+
+.link-container button {
+    // margin-top: 10px;
+}
+
+/* Container for the checkbox and label */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    /* Space between label and checkbox */
+    margin: 1rem 0;
+    /* Add some spacing below the checkbox area */
+    font-family: 'LEMON-MILK-UltraLight', sans-serif;
+    /* Match the overall font */
+    font-size: 1.2rem;
+    /* Make the label text larger */
+    justify-content: center;
+}
+
+/* Style the label */
+.checkbox-label {
+    color: #333;
+    /* Dark text color for readability */
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    /* Make the label clickable */
+}
+
+/* Style for the checkbox */
+.checkbox-input {
+    appearance: none;
+    /* Remove default checkbox styling */
+    width: 1.3rem;
+    height: 1.3rem;
+    border: 2px solid var(--logo-color);
+    border-radius: 5px;
+    /* Slightly rounded corners for modern look */
+    position: relative;
+    cursor: pointer;
+    background-color: transparent;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Create a custom checked effect */
+.checkbox-input:checked {
+    background-color: var(--logo-color);
+    /* Blue background when checked */
+    border-color: var(--logo-color);
+    /* Darker blue border */
+    color: #d7fc33;
+}
+
+/* Add a checkmark */
+.checkbox-input:checked::before {
+    content: '✓';
+    /* The checkmark */
+    position: absolute;
+    top: -0.1rem;
+    left: 0.19rem;
+    font-size: 1rem;
+    color: #d7fc33;
+}
+
+.checkbox-input:checked:hover::before {
+    color: var(--logo-color);
+}
+
+/* Checkbox hover effect */
+.checkbox-input:hover {
+    background-color: #d7fc33;
+    /* Lighter blue when hovering */
+    color: var(--logo-color);
+}
+
+
+
+/* Container for each image input */
+.image-url-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    /* Space between label and input */
+    margin: 1rem;
+    /* Add spacing between the input fields */
+}
+
+/* Style for the label */
+.image-label {
+    font-family: 'LEMON-MILK-UltraLight', sans-serif;
+    font-size: 1.1rem;
+    color: #333;
+    cursor: pointer;
+    /* Make the label clickable */
+    flex-shrink: 0;
+    /* Prevent label from shrinking */
+}
+
+/* Style for the URL input */
+.image-input {
+    width: 100%;
+    padding: 0.6rem 0.7rem;
+    border: 2px solid var(--logo-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: rgba(0, 117, 94, 0.1);
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* Focus effect for better UX */
+.image-input:focus {
+    border-color: #333;
+    background-color: rgba(0, 117, 94, 0.2);
+    outline: none;
+}
+
+/* Hover effect */
+.image-input:hover {
+    background-color: rgba(0, 117, 94, 0.2);
+    /* Light blue background on hover */
+}
+
 
 
 /******************** Admin Add New Project : END ********************/
@@ -426,6 +684,7 @@ section {
     min-width: 100%;
     // height: 100%;
     field-sizing: content;
+    margin-bottom: 1rem;
 
 }
 
@@ -440,7 +699,7 @@ section {
 }
 
 .save-btn-container {
-    background-color: rgba(0, 0, 0, 0.06);
+    background-color: rgba(0, 0, 0, 0.04);
     border-radius: 3px;
     margin-top: 0;
     margin-bottom: 0.6rem;
@@ -560,12 +819,15 @@ section {
     padding-top: 1rem;
 }
 
+.blur-archived-project {
+    filter: blur(8px);
+}
 
 #gallery {
-  list-style: none;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .dragging {
@@ -580,20 +842,35 @@ section {
     opacity: 0.5;
     background-color: #f0f0f0;
     transform: scale(1.05);
-  }
+}
 
-  @keyframes shake {
-    0% { transform: translate(0px, 0px); }
-    25% { transform: translate(2px, 0px); }
-    50% { transform: translate(0px, 2px); }
-    75% { transform: translate(-2px, 0px); }
-    100% { transform: translate(0px, 0px); }
-  }
-  
-  .shaking {
+@keyframes shake {
+    0% {
+        transform: translate(0px, 0px);
+    }
+
+    25% {
+        transform: translate(2px, 0px);
+    }
+
+    50% {
+        transform: translate(0px, 2px);
+    }
+
+    75% {
+        transform: translate(-2px, 0px);
+    }
+
+    100% {
+        transform: translate(0px, 0px);
+    }
+}
+
+.shaking {
     margin: 1rem;
     animation: wiggle 0.5s ease infinite;
 }
+
 /******************** Home gallery : END ********************/
 
 
@@ -619,28 +896,48 @@ section {
 
 
 .intro {
-    /* display: inline-flex;
-    justify-content: space-around; */
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
     gap: 3rem;
 }
 
-.about_img {
-    display: block;
-    text-align: center;
-    width: 30%;
-    margin-bottom: 2.5rem;
-}
-
 .aboutText {
-    width: 40%;
     font-family: 'LEMON-MILK-UltraLight', sans-serif;
     -webkit-text-stroke: 0.8px;
     font-size: 1.4rem;
     letter-spacing: 1px;
     line-height: 2.1rem;
+}
+
+
+.about-image-container {
+    flex: 1;
+    /* This will make the image container take less space */
+    max-width: 30%;
+    /* You can adjust this value to control the width of the image */
+}
+
+.about-text-container {
+    flex: 2;
+    /* This will make the text container take more space */
+    max-width: 40%;
+}
+
+.about-container {
+    display: flex;
+    align-items: center;
+    /* This vertically aligns the image and text */
+    justify-content: space-between;
+    padding: 20px;
+    /* Optional: adds padding around the entire section */
+}
+
+.about_img {
+    width: 100%;
+    /* Makes the image fill its container */
+    height: auto;
+    /* Ensures the aspect ratio is maintained */
 }
 
 
@@ -653,7 +950,7 @@ section {
 
 
 .contact-content {
-    line-height: 4.2rem;
+    // line-height: 4.2rem;
     /* display: flex; */
     /* width: 100%; */
     padding: 0 4%;
@@ -663,7 +960,7 @@ section {
 .platforms {
     -webkit-text-stroke: 0.1rem;
     letter-spacing: 1px;
-    line-height: 4rem;
+    // line-height: 4rem;
     /* display: flex; */
     /* flex-direction: column; */
     /* justify-content: center; */
@@ -736,7 +1033,7 @@ section {
 .project-content {
     display: flex;
     flex-direction: column;
-    width: 55rem;
+    // width: 55rem;
     padding: 0 4% 1.5rem 4%;
 }
 
@@ -752,9 +1049,22 @@ section {
 .projectNameEdit {
     border: solid 0.3px var(--logo-color);
     border-radius: 3px;
-    border-bottom: none;
     width: 100%;
 }
+
+.inputContainer {
+    margin: 1rem 0;
+
+    & label {
+        font-weight: bold;
+        color: #000;
+    }
+
+    & input {
+        width: 100%;
+    }
+}
+
 
 .projectDesc {
     font-weight: 200;
@@ -788,10 +1098,16 @@ section {
     flex-direction: column;
     height: auto !important;
     position: relative;
-
+    width: 90%;
     border: solid 2px #676767;
     border-radius: 3px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 4rem;
+    
+}
+
+.project-details {
+    width: 55rem;
+    margin-bottom: 2rem;
 }
 
 .footer {
@@ -801,7 +1117,7 @@ section {
 
 /* עיצוב כפתור מחיקה */
 
-.save-order, 
+.save-order,
 .delete-archive button {
     padding: 10px 20px;
     margin: 0.5rem 0;
@@ -818,7 +1134,7 @@ section {
 .delete-btn {
     background-color: #ff4d4d;
     color: white;
-    
+
 }
 
 .delete-btn:hover {
@@ -835,6 +1151,43 @@ section {
 .archive-btn:hover {
     background-color: #2e2e2e;
     transform: scale(1.05);
+}
+
+.delete-btn-container {
+    width: 30%;
+    margin: auto;
+
+    & button {
+        width: 100%;
+    }
+}
+
+
+.delete-image-btn {
+    background-color: #ff4d4d;
+    color: white;
+    padding: 10px 20px;
+    margin: 0.5rem 0;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.delete-image-btn:hover {
+    background-color: #ff1a1a;
+    /* צבע אדום כהה יותר כאשר מרחפים */
+}
+
+.delete-image-btn:active {
+    background-color: #e60000;
+    /* צבע אדום כהה יותר בלחיצה */
+    transform: scale(0.95);
+    /* מכווץ קלות בעת לחיצה */
 }
 
 

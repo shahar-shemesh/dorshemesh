@@ -8,13 +8,13 @@
                 <input type="hidden" name="order" id="order-input">
                 <button class="save-btn save-order" id="save-order" type="submit">Save Order</button>
         </form>
-
+        
         <ul id="gallery" class="gallery">
             <% projects.forEach((project)=> { %>
                 <li class="gallery-item <%= project.archive ? 'gallery-archive-item' : '' %>" data-index="<%= project._id.toString() %>">
                     <a href="<%= toKebabCase(project.projectName) %>">
                         <div class="gallery-img">
-                            <img src="<%= project.mainImg %>" alt="<%= project.projectName %>" class="image">
+                            <img class="image <%= project.archive ? 'blur-archived-project' : '' %>" src="<%= project.mainImg %>" alt="<%= project.projectName %>">
                             <div class="overlay">
                                 <div class="gallery-img-text">
                                     <%= project.projectName %>

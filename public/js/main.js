@@ -10,6 +10,7 @@ function cancelClickHandler(e) {
   switch (currentPage) {
     /************************************************************************************** */
     case 'home':
+    case 'about':
       form.content.value = JSON.parse(form.previousContent.value);
       break;
     /************************************************************************************** */

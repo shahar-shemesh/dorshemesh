@@ -1,56 +1,129 @@
 <section class="project-content">
 
-
     <% if (!isAuthenticated || !editing) { %>
-        <h1 class="projectName">
-            <%= project.projectName %>
-        </h1>
-    
-        <h3 class="projectDesc">
-            <%= project.projectDesc %>
-        </h3>
-        
-        
-        
+            <h1 class="projectName">
+                <%= project.projectName %>
+            </h1>
+
+            <h3 class="projectDesc">
+                <%= project.projectDesc %>
+            </h3>
+        </section>
+
+        <section class="project-gallery">
+
+            <% project.images.forEach((image)=> { %>
+                <div class="image-project">
+                    <img src="<%= image %>" />
+                </div>
+            <% }); %>
+
+
+
     <% } else { %>
 
-        <form class="delete-archive" action="/admin/delete-or-archive-project" method="POST">
-            <%- include('../../../admin/csrf-input.ejs') %>
-            <input type="hidden" value="<%= JSON.stringify(project._id) %>" name="projectId">
-            <button class="delete-btn" type="submit" value="delete" name="trash" onclick="return confirmDelete()">Delete Project</button>
-            <button class="archive-btn" type="submit" value="archive" name="trash"><%= project.archive ? "Unarchive" : "Archive" %> Project</button>
-        </form>
+                <form class="delete-archive" action="/admin/delete-or-archive-project" method="POST">
+                    <%- include('../../../admin/csrf-input.ejs') %>
+                        <input type="hidden" value="<%= JSON.stringify(project._id) %>" name="projectId">
+                        <button class="delete-btn" type="submit" value="delete" name="trash"
+                            onclick="return confirmDelete()">Delete Project</button>
+                        <button class="archive-btn" type="submit" value="archive" name="trash">
+                            <%= project.archive ? "Unarchive" : "Archive" %> Project
+                        </button>
+                </form>
 
-        <form action="/admin/edit-project" method="POST">
-            
-            <input class="projectName projectNameEdit" name="projectName" id="projectName" value="<%= project.projectName %>">
-            
-            <textarea class="styled-textarea projectDesc" name="projectDesc" id="projectDesc" rows="6"><%= project.projectDesc %></textarea>
+                <form action="/admin/edit-project" method="POST">
 
-            
-            <div class="save-btn-container">
-                <button class="save-btn" type="submit">Save</button>
-                <button id="cancel-btn" class="cancel-btn">Cancel</button>
-            </div>
-            
-            
-            <%- include('../../../admin/csrf-input.ejs') %>
-            <input type="hidden" value="<%= page.pageName %>" name="page">
-            <input type="hidden" value="<%= JSON.stringify(project._id) %>" name="projectId">
-            <input type="hidden" value="<%= JSON.stringify(project) %>" id="previousContent" name="previousContent">
+                    <div class="project-details">
+
+                        <div class="inputContainer">
+                            <label for="mainImg">Main image: </label>
+                            <input class="styled-textarea projectDesc" name="mainImg" id="projectImg"
+                                value="<%= project.mainImg %>">
+                        </div>
+
+                        <div class="inputContainer">
+                            <label for="projectName">Project Name: </label>
+                            <input class="projectName projectNameEdit" name="projectName" id="projectName"
+                                value="<%= project.projectName %>">
+                        </div>
+
+                        <div class="inputContainer">
+                            <label for="projectDesc">Project Description: </label>
+                            <textarea class="styled-textarea projectDesc" name="projectDesc" id="projectDesc"
+                                rows="6"><%= project.projectDesc %></textarea>
+                        </div>
 
 
-            
-        </form>
-            
-    <% } %>
+                        <div class="save-btn-container">
+                            <button class="save-btn" type="submit">Save</button>
+                            <button id="cancel-btn" class="cancel-btn">Cancel</button>
+                        </div>
 
+                    </div>
+                    
+                        
+                        <% project.images.forEach((image, index)=> { %>
+                            <div class="project-images-container">
+                                <div class="image-project">
+                                    <img src="<%= image %>" />
+                                </div>
+
+                                <span class="image-url-container">
+                                    <input type="url" class="input-url" name="images" value="<%= image %>" />
+                                </span>
+
+
+                                <span class="checkbox-container">
+                                    <input type="checkbox" class="checkbox-input newImageUrl" name="setMainImage" id="setMainImage_<%= index %>" <%= image === project.mainImg ? 'checked' : '' %> />
+                                    <label for="setMainImage_<%= index %>" class="checkbox-label">Make main image</label>
+                                </span>
+
+
+                                <span class="delete-btn-container">
+                                    <button class="save-order delete-btn" type="button" value="delete" onclick="deleteElement(this)">Delete</button>
+                                </span>
+
+                            </div>
+                        <% }); %>
+                        
+                    
+
+                        <%- include('../../../admin/csrf-input.ejs') %>
+                        <input type="hidden" value="<%= page.pageName %>" name="page">
+                        <input type="hidden" value="<%= JSON.stringify(project._id) %>" name="projectId">
+                        <input type="hidden" value="<%= JSON.stringify(project) %>" id="previousContent" name="previousContent">
+                </form>
+
+            <% } %>
 
 </section>
 
 
 <script>
-    function confirmDelete() {
-        return confirm("Are you sure? This action is permanent.");
+
+    function deleteElement(button) {
+        if(confirm("Are you sure? This action is permanent.")){
+            button.parentElement.remove();
+        }
     }
-    </script>
+
+
+    // Select all checkboxes with the name 'setMainImage'
+    const checkboxes = document.querySelectorAll('input[name="setMainImage"]');
+
+    // Add event listener to each checkbox
+    checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener('change', function() {
+            // If the checkbox is checked, uncheck all other checkboxes
+            if (this.checked) {
+                checkboxes.forEach((otherCheckbox) => {
+                    if (otherCheckbox !== this) {
+                        otherCheckbox.checked = false; // Uncheck other checkboxes
+                    }
+                });
+            }
+        });
+    });
+
+</script>

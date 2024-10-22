@@ -52,7 +52,7 @@ router.post('/add-new-project', isAuth, adminController.postAddNewProject);
 
 
 // /admin/update-project-image => POST
-router.post('/update-project-image', isAuth, adminController.postUpdateProjectImage);
+// router.post('/update-project-image', isAuth, adminController.postUpdateProjectImage);
 
 // /admin/delete-or-archive-project => POST
 router.post('/delete-or-archive-project', isAuth, adminController.postDeleteArchiveProject);

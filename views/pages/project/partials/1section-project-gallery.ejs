@@ -18,7 +18,6 @@
                 <div class="project-images-container">
                     <div class="image-project">
                         <img src="<%= image %>" />
-    
                     </div>
 
 
@@ -29,7 +28,8 @@
                         <label for="setMainImage">Main image: </label>
                         <input type="checkbox" class="newImageUrl" name="setMainImage" <%= image === project.mainImg ? 'checked' : '' %> />
 
-                        <button class="save-btn" type="submit">Save</button>
+                        <button class="save-btn" type="submit" value="save" name="editImageOp">Save</button>
+                        <button class="save-btn delete-btn" type="submit" value="delete" name="editImageOp" onclick="return confirmDelete()">Delete</button>
                         
                         
                         <%- include('../../../admin/csrf-input.ejs') %>

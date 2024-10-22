@@ -2,43 +2,56 @@
 
     <!-- <p class="about-me">ABOUT ME</p> -->
 
-    <div class="intro">
 
-        <img class="about_img" src="/green_about_img.png" alt="">
+    <% if (!isAuthenticated || !editing) { %>
+        <div class="intro">
 
+            <div class="about-image-container">
+                <img class="about_img" src="<%= page.pageImg %>" alt="">
+            </div>
 
+            <div class="about-text-container">
+                <h3 class="aboutText">
+                    <%= page.pageContent[0] %>
+                    <%= page.pageContent[1] %>
+                </h3>
+            </div>
 
-        <% if (!isAuthenticated || !editing) { %>
+        </div>
 
-            <h3 class="aboutText">
-                <%= page.pageContent[0] %>
-                <%= page.pageContent[1] %>
-            </h3>
             
-            
-        <% } else { %>
-            <form class="aboutText" action="/admin/edit-page-content" method="POST">
-                <textarea class="styled-textarea aboutText" name="content" id="content"><%= page.pageContent %></textarea>
-                <%- include('../../../admin/csrf-input.ejs') %>
-                <div class="save-btn-container">
-                    <button class="save-btn" type="submit">Save</button>
-                    <button id="cancel-btn" class="cancel-btn">Cancel</button>
+        
+    <% } else { %>
+        
+        
+        <form class="about-form-container" action="/admin/edit-page-content" method="POST">
+            <div class="save-btn-container">
+                <button class="save-btn" type="submit">Save</button>
+                <button id="cancel-btn" class="cancel-btn">Cancel</button>
+            </div>
+            <div class="intro">
+
+                <div class="about-image-container">
+                    <img class="about_img" src="<%= page.pageImg %>" alt="">
+                    <input class="input-url" name="pageImg" value="<%= page.pageImg %>">   
+                </div>   
+
+
+                <div class="about-text-container">
+                    <textarea class="styled-textarea aboutText" name="content" id="content"><%= page.pageContent %></textarea>
                 </div>
-                <input type="hidden" value="<%= page.pageName %>" name="page">
-                <input type="hidden" value="<%= JSON.stringify(page.pageContent) %>" id="previousContent" name="previousContent">
-            </form>
-                
-        <% } %>
 
-    </div>
+            </div>
 
+            <%- include('../../../admin/csrf-input.ejs') %>
 
+            <input type="hidden" value="<%= page.pageName %>" name="page">
+            <input type="hidden" value="<%= JSON.stringify(page.pageContent) %>" id="previousContent" name="previousContent">
+            
 
-    
-
-
-
-
+        </form>
+            
+    <% } %>
 
 
 </section>

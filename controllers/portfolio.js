@@ -67,7 +67,8 @@ exports.getProject = async (req, res) => {
 
         // Create a regex pattern to match flexible formats:
         // Replace hyphens with optional spaces or nothing, making the pattern case-insensitive
-        const regexPattern = new RegExp(kebabName.split('-').join('[\\s-]*'), 'i');
+        const regexPattern = new RegExp('^' + kebabName.split('-').join('[\\s-]*') + '$', 'i');
+
 
         // Find the specific project directly from the database
         const projectFounded = await Project.findOne({
