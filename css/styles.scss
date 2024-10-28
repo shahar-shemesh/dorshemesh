@@ -1201,7 +1201,8 @@ section {
 
     body {
         overflow-x: hidden;
-        padding: 0 3%;
+        // padding: 0 3%;
+        padding: 0 3% 3% 3%;
     }
 
     section {
@@ -1300,6 +1301,11 @@ section {
         grid-template-columns: 1fr;
         justify-content: center;
         margin-top: 3vh;
+    }
+
+    #gallery {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 0.5rem;
     }
 
     .gallery-item {
