@@ -180,6 +180,7 @@ a:active {
 
 
 .login-form {
+    width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -187,20 +188,12 @@ a:active {
     /* Light background with transparency */
     padding: 2rem;
     border-radius: 1rem;
-    width: 40vw;
-    height: 30vh;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-    // transition: all 0.5s;
 }
 
 .login-form:focus-within,
 .login-form:hover {
     background-color: rgba(242, 242, 242, 0.9);
-}
-
-.login-form:focus-within {
-    width: 60vw;
-    height: 40vh;
 }
 
 
@@ -1508,6 +1501,10 @@ section {
         -moz-appearance: none;
         appearance: none;
         pointer-events: none;
+    }
+
+    .login-form {
+        width: unset;
     }
 
 }
