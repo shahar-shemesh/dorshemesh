@@ -23,8 +23,8 @@
                     <form action="/admin/edit-page-content" method="POST">
                         <% page.pageContent.forEach(function(item){ %>
                             <div class="platform-edit" key="<%= item.link %>">
-                                <input class="platform-type" name="platform" value="<%= item.platform %>">
-                                <input class="platform-link" name="link" value="<%= item.link %>">
+                                <input class="input-url platform-type" name="platform" value="<%= item.platform %>">
+                                <input class="input-url platform-link" name="link" value="<%= item.link %>">
                             </div>
 
                             <% }) %>
