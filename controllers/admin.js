@@ -198,7 +198,7 @@ exports.postEditProject = async (req, res, next) => {
         await Project.findByIdAndUpdate(
             projectId,
             {
-                projectName: projectName,
+                projectName: projectName.trim(),
                 projectDesc: projectDesc,
                 mainImg: mainImg,
                 images: images
@@ -265,12 +265,12 @@ exports.postAddNewProject = async (req, res, next) => {
     const { projectName, projectDesc, mainImg, images } = req.body;
 
     try {
-        const projectExist = await Project.findOne({ projectName: projectName });
+        const projectExist = await Project.findOne({ projectName: projectName.trim() });
         if (projectExist) {
             return res.redirect('/admin');
         }
         const project = new Project({
-            projectName: projectName,
+            projectName: projectName.trim(),
             projectDesc: projectDesc,
             mainImg: mainImg,
             images: images
