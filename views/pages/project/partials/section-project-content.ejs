@@ -129,7 +129,7 @@
                 checkboxes.forEach((otherCheckbox) => {
                     if (otherCheckbox !== this) {
                         otherCheckbox.checked = false; // Uncheck other checkboxes
-                        this.disabled = false;
+                        otherCheckbox.disabled = false;
                     }
                 });
             }
