@@ -117,6 +117,7 @@
         checkbox.addEventListener('change', function() {
             // If the checkbox is checked, uncheck all other checkboxes
             if (this.checked) {
+                console.log(this.id)
                 checkboxes.forEach((otherCheckbox) => {
                     if (otherCheckbox !== this) {
                         otherCheckbox.checked = false; // Uncheck other checkboxes
