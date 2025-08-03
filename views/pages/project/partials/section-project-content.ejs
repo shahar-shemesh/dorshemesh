@@ -117,17 +117,19 @@
         checkbox.addEventListener('change', function() {
             // If the checkbox is checked, uncheck all other checkboxes
             if (this.checked) {
-                console.log(this.id)
+                // console.log(this.id)
                 const mainImg = document.getElementById('projectImg');
                 const currentImage = document.getElementById(`imageIndex_${index}`);
                 if (currentImage){
                     mainImg.value = currentImage.value;
                 }
+                this.disabled = true;
 
-                
+
                 checkboxes.forEach((otherCheckbox) => {
                     if (otherCheckbox !== this) {
                         otherCheckbox.checked = false; // Uncheck other checkboxes
+                        this.disabled = false;
                     }
                 });
             }
